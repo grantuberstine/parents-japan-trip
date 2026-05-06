@@ -1,0 +1,5 @@
+.firecrawl/
+.playwright-cli/
+.DS_Store
+node_modules/
+.vercel/
