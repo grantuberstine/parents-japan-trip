@@ -39,8 +39,17 @@
   h2 { font-size: 1.9rem; margin: 0 0 .4em; }
   h3 { font-size: 1.35rem; margin: 0 0 .3em; }
   h4 { font-size: 1.1rem; margin: 0 0 .3em; font-weight: 600; }
-  a { color: var(--accent-dark); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  a { color: var(--accent-dark); text-decoration: none; border-bottom: 1px solid var(--accent-soft); transition: color .15s, border-color .15s; }
   a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  /* Heading-level links: cleaner */
+  .hotel-name a, .timeblock-title a, h2 a, h3 a, h4 a {
+    color: inherit;
+    border-bottom: 1px dotted var(--accent-soft);
+  }
+  .hotel-name a:hover, .timeblock-title a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
 
   /* Hero */
   .hero {
@@ -164,12 +173,24 @@
   .hotel {
     background: white;
     border-radius: 6px;
-    padding: 32px;
+    padding: 0;
     margin: 24px 0;
     box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .hotel-hero {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    background: var(--paper-warm);
+    border-bottom: 3px solid var(--accent);
+  }
+  .hotel-body {
+    padding: 28px 32px 32px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
   .hotel-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
   .hotel-brand {
@@ -225,6 +246,15 @@
     margin: 24px 0;
     box-shadow: var(--shadow);
     border-top: 4px solid var(--accent);
+    overflow: hidden;
+  }
+  .day-hero {
+    width: calc(100% + 64px);
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    margin: -32px -32px 24px;
+    background: var(--paper-warm);
   }
   .day-header {
     display: flex;
@@ -382,7 +412,10 @@
   @media (max-width: 600px) {
     .hero { padding: 60px 20px 70px; }
     .section { padding: 40px 0; }
-    .hotel, .day { padding: 22px; }
+    .day { padding: 22px; }
+    .hotel-body { padding: 22px; }
+    .day-hero { width: calc(100% + 44px); margin: -22px -22px 18px; height: 180px; }
+    .hotel-hero { height: 200px; }
     .hero .kanji { font-size: 2.8rem; }
   }
 
@@ -472,132 +505,144 @@
 
     <!-- HOTEL 1 -->
     <div class="hotel">
-      <div class="hotel-header">
-        <div>
-          <div class="hotel-brand">Marriott Bonvoy · Autograph Collection</div>
-          <div class="hotel-name">Mesm Tokyo</div>
+      <img class="hotel-hero" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Hamarikyu_Garden_as_seen_from_Shiodome.jpg/1280px-Hamarikyu_Garden_as_seen_from_Shiodome.jpg" alt="Hamarikyu Gardens, next door to Mesm Tokyo">
+      <div class="hotel-body">
+        <div class="hotel-header">
+          <div>
+            <div class="hotel-brand">Marriott Bonvoy · Autograph Collection</div>
+            <div class="hotel-name"><a href="https://www.marriott.com/en-us/hotels/tyoam-mesm-tokyo-autograph-collection/overview/" target="_blank" rel="noopener">Mesm Tokyo ↗</a></div>
+          </div>
+          <div class="hotel-dates">May 9 – 13 (4 nights)</div>
         </div>
-        <div class="hotel-dates">May 9 – 13 (4 nights)</div>
-      </div>
-      <p class="hotel-why">
-        A waterfront luxury hotel on Tokyo Bay with floor-to-ceiling windows and 40-square-meter rooms that are spacious by Tokyo standards. The lobby looks straight onto Hamarikyu Gardens. Rooms have a private balcony with views of Tokyo Bay and Tokyo Skytree, a digital piano that doubles as a Bluetooth speaker, and a Japanese matcha kit. A great soft landing — calm, modern, and ten minutes from Ginza.
-      </p>
-      <div class="hotel-details">
-        <div class="detail-block">
-          <div class="detail-label">Address</div>
-          <div class="detail-value">1-10-30 Kaigan, Minato City, Tokyo 105-0022</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Neighborhood</div>
-          <div class="detail-value">WATERS Takeshiba complex · Tokyo Bay</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Room to book</div>
-          <div class="detail-value">Chapter 2 King with Balcony · Bay-facing</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Don't miss</div>
-          <div class="detail-value">Sunset cocktails at Whisk Bar &amp; Lounge</div>
+        <p class="hotel-why">
+          A waterfront luxury hotel on Tokyo Bay with floor-to-ceiling windows and 40-square-meter rooms that are spacious by Tokyo standards. The lobby looks straight onto <a href="https://en.wikipedia.org/wiki/Hama-rikyu_Gardens" target="_blank" rel="noopener">Hamarikyu Gardens</a>. Rooms have a private balcony with views of Tokyo Bay and Tokyo Skytree, a digital piano that doubles as a Bluetooth speaker, and a Japanese matcha kit. A great soft landing — calm, modern, and ten minutes from Ginza.
+        </p>
+        <div class="hotel-details">
+          <div class="detail-block">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">1-10-30 Kaigan, Minato City, Tokyo 105-0022</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Neighborhood</div>
+            <div class="detail-value">WATERS Takeshiba complex · Tokyo Bay</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Room to book</div>
+            <div class="detail-value">Chapter 2 King with Balcony · Bay-facing</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Don't miss</div>
+            <div class="detail-value">Sunset cocktails at Whisk Bar &amp; Lounge</div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- HOTEL 2 -->
     <div class="hotel">
-      <div class="hotel-header">
-        <div>
-          <div class="hotel-brand">Marriott Bonvoy · Luxury Collection</div>
-          <div class="hotel-name">HOTEL THE MITSUI KYOTO, A Luxury Collection Hotel &amp; Spa</div>
+      <img class="hotel-hero" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/1280px-NinomaruPalace.jpg" alt="Nijō Castle, directly across from Hotel The Mitsui Kyoto">
+      <div class="hotel-body">
+        <div class="hotel-header">
+          <div>
+            <div class="hotel-brand">Marriott Bonvoy · Luxury Collection</div>
+            <div class="hotel-name"><a href="https://www.marriott.com/en-us/hotels/osalc-hotel-the-mitsui-kyoto-a-luxury-collection-hotel-and-spa/overview/" target="_blank" rel="noopener">HOTEL THE MITSUI KYOTO ↗</a></div>
+          </div>
+          <div class="hotel-dates">May 13 – 16 (3 nights)</div>
         </div>
-        <div class="hotel-dates">May 13 – 16 (3 nights)</div>
-      </div>
-      <p class="hotel-why">
-        Awarded <strong>Three Michelin Keys</strong> in 2025 and named to <strong>The World's 50 Best Hotels</strong> — and rightly so. Built on a 250-year-old Mitsui family site directly across from Nijō Castle, the hotel has its own natural hot spring drawn from 1,000 meters below ground. The communal "Thermal Spring" pools (swimsuits worn) are unlike anything you'll find at another hotel — a perfect end-of-day soak after temple touring. Rooms are serene, the breakfast is excellent, and Chef Asano's Kyoto-French restaurant <em>TOKI</em> is a destination in itself.
-      </p>
-      <div class="hotel-details">
-        <div class="detail-block">
-          <div class="detail-label">Address</div>
-          <div class="detail-value">284 Nijoaburanokoji-cho, Nakagyo Ward, Kyoto 604-0051</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Neighborhood</div>
-          <div class="detail-value">Across from Nijō Castle (UNESCO)</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Room to book</div>
-          <div class="detail-value">Garden Room or Nijō Suite (castle view)</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Don't miss</div>
-          <div class="detail-value">Thermal Spring spa + breakfast at Toki</div>
+        <p class="hotel-why">
+          Awarded <strong>Three Michelin Keys</strong> in 2025 and named to <strong>The World's 50 Best Hotels</strong> — and rightly so. Built on a 250-year-old Mitsui family site directly across from <a href="https://en.wikipedia.org/wiki/Nij%C5%8D_Castle" target="_blank" rel="noopener">Nijō Castle</a>, the hotel has its own natural hot spring drawn from 1,000 meters below ground. The communal "Thermal Spring" pools (swimsuits worn) are unlike anything you'll find at another hotel — a perfect end-of-day soak after temple touring. Rooms are serene, the breakfast is excellent, and Chef Asano's Kyoto-French restaurant <em>TOKI</em> is a destination in itself.
+        </p>
+        <div class="hotel-details">
+          <div class="detail-block">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">284 Nijoaburanokoji-cho, Nakagyo Ward, Kyoto 604-0051</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Neighborhood</div>
+            <div class="detail-value">Across from Nijō Castle (UNESCO)</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Room to book</div>
+            <div class="detail-value">Garden Room or Nijō Suite (castle view)</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Don't miss</div>
+            <div class="detail-value">Thermal Spring spa + breakfast at Toki</div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- HOTEL 3 -->
     <div class="hotel">
-      <div class="hotel-header">
-        <div>
-          <div class="hotel-brand">Traditional Ryokan · Independent</div>
-          <div class="hotel-name">Hakone Yuyado Zen 箱根 湯宿 然</div>
+      <img class="hotel-hero" src="https://upload.wikimedia.org/wikipedia/commons/c/c5/LakeAshi_and_MtFuji_Hakone.JPG" alt="Mt. Fuji over Lake Ashi — the view from Yuyado Zen rooms">
+      <div class="hotel-body">
+        <div class="hotel-header">
+          <div>
+            <div class="hotel-brand">Traditional Ryokan · Independent</div>
+            <div class="hotel-name">Hakone Yuyado Zen 箱根 湯宿 然</div>
+          </div>
+          <div class="hotel-dates">May 16 – 18 (2 nights)</div>
         </div>
-        <div class="hotel-dates">May 16 – 18 (2 nights)</div>
-      </div>
-      <p class="hotel-why">
-        A small, refined ryokan on the western shore of Lake Ashi — the only spot in Hakone where you reliably see <strong>Mt. Fuji rising across the lake from your room</strong>. All eleven rooms have semi-open-air private onsen baths on a balcony facing the water; on a clear morning, you'll soak with Fuji directly in front of you. Two kaiseki meals included daily, served in your room or in a private dining space. This is the quintessential ryokan experience and the emotional centerpiece of the trip.
-      </p>
-      <div class="hotel-details">
-        <div class="detail-block">
-          <div class="detail-label">Address</div>
-          <div class="detail-value">160 Motohakone, Hakone-machi, Kanagawa 250-0522</div>
+        <p class="hotel-why">
+          A small, refined ryokan on the western shore of <a href="https://en.wikipedia.org/wiki/Lake_Ashi" target="_blank" rel="noopener">Lake Ashi</a> — the only spot in Hakone where you reliably see <strong>Mt. Fuji rising across the lake from your room</strong>. All eleven rooms have semi-open-air private onsen baths on a balcony facing the water; on a clear morning, you'll soak with Fuji directly in front of you. Two kaiseki meals included daily, served in your room or in a private dining space. This is the quintessential ryokan experience and the emotional centerpiece of the trip.
+        </p>
+        <div class="hotel-details">
+          <div class="detail-block">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">160 Motohakone, Hakone-machi, Kanagawa 250-0522</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Setting</div>
+            <div class="detail-value">Lake Ashi, west shore · 11 rooms only</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Room to book</div>
+            <div class="detail-value">Front-facing room (lake + Fuji view)</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Don't miss</div>
+            <div class="detail-value">Pre-dawn soak; the 10-course kaiseki dinner</div>
+          </div>
         </div>
-        <div class="detail-block">
-          <div class="detail-label">Setting</div>
-          <div class="detail-value">Lake Ashi, west shore · 11 rooms only</div>
+        <div class="callout">
+          <div class="callout-title">Booking Note</div>
+          <p style="margin:0;">No Marriott property in Hakone delivers the Fuji-from-your-bath experience. Book directly via <a href="https://www.hakone-yuyadozen.com/" target="_blank" rel="noopener">the ryokan website</a> or through a service like Ryokan Collection. <strong>Reserve well in advance</strong> — 11 rooms means it sells out 60–90 days ahead, especially for May.</p>
         </div>
-        <div class="detail-block">
-          <div class="detail-label">Room to book</div>
-          <div class="detail-value">Front-facing room (lake + Fuji view)</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Don't miss</div>
-          <div class="detail-value">Pre-dawn soak; the 10-course kaiseki dinner</div>
-        </div>
-      </div>
-      <div class="callout">
-        <div class="callout-title">Booking Note</div>
-        <p style="margin:0;">No Marriott property in Hakone delivers the Fuji-from-your-bath experience. Book directly via the ryokan website or through a service like Ryokan Collection. <strong>Reserve well in advance</strong> — 11 rooms means it sells out 60–90 days ahead, especially for May.</p>
       </div>
     </div>
 
     <!-- HOTEL 4 -->
     <div class="hotel">
-      <div class="hotel-header">
-        <div>
-          <div class="hotel-brand">Marriott Bonvoy · EDITION</div>
-          <div class="hotel-name">The Tokyo EDITION, Toranomon</div>
+      <img class="hotel-hero" src="https://upload.wikimedia.org/wikipedia/commons/5/58/Tokyo_Tower_2023.jpg" alt="Tokyo Tower, visible from many EDITION rooms">
+      <div class="hotel-body">
+        <div class="hotel-header">
+          <div>
+            <div class="hotel-brand">Marriott Bonvoy · EDITION</div>
+            <div class="hotel-name"><a href="https://www.marriott.com/en-us/hotels/tyoet-the-tokyo-edition-toranomon/overview/" target="_blank" rel="noopener">The Tokyo EDITION, Toranomon ↗</a></div>
+          </div>
+          <div class="hotel-dates">May 18 – 20 (2 nights)</div>
         </div>
-        <div class="hotel-dates">May 18 – 20 (2 nights)</div>
-      </div>
-      <p class="hotel-why">
-        For the second Tokyo stretch — different neighborhood, different vibe. The EDITION is Ian Schrager's luxury concept built into a Kengo Kuma-designed tower; the lobby has a giant indoor garden, the Blue Room cocktail bar is one of the most beautiful in the city, and many rooms offer direct Tokyo Tower views. More design-forward and lively than the calm Mesm — a fitting energetic finale.
-      </p>
-      <div class="hotel-details">
-        <div class="detail-block">
-          <div class="detail-label">Address</div>
-          <div class="detail-value">4-1-1 Toranomon, Minato City, Tokyo 105-6431</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Neighborhood</div>
-          <div class="detail-value">Toranomon Hills · between Ginza &amp; Roppongi</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Room to book</div>
-          <div class="detail-value">Tokyo Tower View King</div>
-        </div>
-        <div class="detail-block">
-          <div class="detail-label">Don't miss</div>
-          <div class="detail-value">Blue Room rooftop bar at sunset</div>
+        <p class="hotel-why">
+          For the second Tokyo stretch — different neighborhood, different vibe. The EDITION is Ian Schrager's luxury concept built into a Kengo Kuma-designed tower; the lobby has a giant indoor garden, the Blue Room cocktail bar is one of the most beautiful in the city, and many rooms offer direct <a href="https://en.wikipedia.org/wiki/Tokyo_Tower" target="_blank" rel="noopener">Tokyo Tower</a> views. More design-forward and lively than the calm Mesm — a fitting energetic finale.
+        </p>
+        <div class="hotel-details">
+          <div class="detail-block">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">4-1-1 Toranomon, Minato City, Tokyo 105-6431</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Neighborhood</div>
+            <div class="detail-value">Toranomon Hills · between Ginza &amp; Roppongi</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Room to book</div>
+            <div class="detail-value">Tokyo Tower View King</div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-label">Don't miss</div>
+            <div class="detail-value">Blue Room rooftop bar at sunset</div>
+          </div>
         </div>
       </div>
     </div>
@@ -648,6 +693,7 @@
 
     <!-- DAY 2 -->
     <div class="day" id="day2">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/4/43/Sensoji_2023.jpg" alt="Sensō-ji Temple at night">
       <div class="day-header">
         <span class="day-num">02</span>
         <span class="day-date">Sunday, May 10 — Old Tokyo &amp; teamLab</span>
@@ -656,7 +702,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
-        <div class="timeblock-title">Sensō-ji Temple &amp; Nakamise Street <span class="pill">Iconic</span></div>
+        <div class="timeblock-title"><a href="https://en.wikipedia.org/wiki/Sens%C5%8D-ji" target="_blank" rel="noopener">Sensō-ji Temple</a> &amp; Nakamise Street <span class="pill">Iconic</span></div>
         <div class="timeblock-body">
           Tokyo's oldest Buddhist temple (founded 645 AD). Enter through the giant red <strong>Kaminarimon</strong> lantern gate, walk Nakamise Dori with its 89 stalls of crackers, fans, and sweets, and arrive at the main hall. Get there by 9 am to beat the tour groups. Allow about 90 minutes.
         </div>
@@ -674,9 +720,9 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Afternoon</div>
-        <div class="timeblock-title">teamLab Planets Tokyo <span class="pill crimson">Reservation</span> <span class="pill">From Wanderlog</span></div>
+        <div class="timeblock-title"><a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets Tokyo</a> <span class="pill crimson">Reservation</span> <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
-          Taxi 20 min from Asakusa to Toyosu — the <strong>immersive digital art experience</strong> that defines the trip for many visitors. Barefoot wading through warm water, mirrored infinity rooms full of LED orchids, a koi pond projected onto your feet. About 90 minutes inside. Book the 3:00 or 3:30 pm slot online — sells out a week ahead.
+          Taxi 20 min from Asakusa to Toyosu — the <strong>immersive digital art experience</strong> that defines the trip for many visitors. Barefoot wading through warm water, mirrored infinity rooms full of LED orchids, a koi pond projected onto your feet. About 90 minutes inside. <a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">Book the 3:00 or 3:30 pm slot online</a> — sells out a week ahead.
         </div>
       </div>
 
@@ -691,6 +737,7 @@
 
     <!-- DAY 3 -->
     <div class="day" id="day3">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers at Ryōgoku Kokugikan">
       <div class="day-header">
         <span class="day-num">03</span>
         <span class="day-date">Monday, May 11 — Imperial Tokyo &amp; Sumo</span>
@@ -707,7 +754,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Lunch</div>
-        <div class="timeblock-title">Tsukiji Outer Market food crawl <span class="pill gold">Highlight</span></div>
+        <div class="timeblock-title"><a href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener">Tsukiji Outer Market</a> food crawl <span class="pill gold">Highlight</span></div>
         <div class="timeblock-body">
           Inner market moved to Toyosu, but the <strong>outer market is still a wonderland</strong> — tamago (sweet egg) on a stick, wagyu skewers, A5 beef croquettes, dashimaki tamago, melon-pan, fresh strawberries, oysters if they want them. Graze through 6–8 stalls. Plenty for non-sushi eaters; the cooked food stalls are the real treat anyway.
         </div>
@@ -715,11 +762,11 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Afternoon &amp; Evening</div>
-        <div class="timeblock-title">Grand Sumo May Tournament <span class="pill crimson">Book Now</span></div>
+        <div class="timeblock-title"><a href="https://www.sumo.or.jp/En/" target="_blank" rel="noopener">Grand Sumo May Tournament</a> <span class="pill crimson">Book Now</span></div>
         <div class="timeblock-body">
           Held only three times a year in Tokyo — and it's running while you're there. Doors open at 8 am but <strong>real action starts around 3:30 pm</strong>; top-division (makuuchi) bouts run 4–6 pm. Get <strong>Box B or Box C seats</strong> (4-person tatami boxes near the floor) — ¥9,500–¥11,500 per seat. Ryōgoku Kokugikan, 25 min by taxi from Mesm.
           <br><br>
-          <strong>Buy tickets at:</strong> sumo.or.jp (official) or BuySumoTickets.com — release dates are typically 1 month in advance, sell out fast.
+          <strong>Buy tickets at:</strong> <a href="https://www.buysumotickets.com/" target="_blank" rel="noopener">BuySumoTickets.com</a> or <a href="https://www.sumo.or.jp/EnTicket/" target="_blank" rel="noopener">sumo.or.jp</a> (official) — release dates are typically 1 month in advance, sell out fast.
         </div>
       </div>
 
@@ -734,6 +781,7 @@
 
     <!-- DAY 4 -->
     <div class="day" id="day4">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Manekineko1003.jpg" alt="Maneki-neko lucky cats at Gotokuji Temple">
       <div class="day-header">
         <span class="day-num">04</span>
         <span class="day-date">Tuesday, May 12 — Lucky Cats &amp; Modern Tokyo</span>
@@ -742,7 +790,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
-        <div class="timeblock-title">Gotokuji Temple — the lucky cat shrine <span class="pill gold">Wanderlog favorite</span></div>
+        <div class="timeblock-title"><a href="https://gotokuji.jp/en/" target="_blank" rel="noopener">Gotokuji Temple</a> — the lucky cat shrine <span class="pill gold">Wanderlog favorite</span></div>
         <div class="timeblock-body">
           The original "maneki-neko" (waving lucky cat) temple — a forested Setagaya shrine where thousands of white porcelain cats are stacked in offering. Photogenic, peaceful, totally unique. <strong>Take the Setagaya Line</strong> from Shibuya, ~25 min. Open 6 am, get there by 9 to have it nearly empty. Free entry. Allow 60 min including the walk in.
         </div>
@@ -776,7 +824,7 @@
         <div class="timeblock-time">Early Afternoon</div>
         <div class="timeblock-title">Meiji Jingu &amp; Yoyogi Park <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
-          Train one stop to Harajuku, then walk into the massive forested shrine — feels like leaving Tokyo entirely. <strong>Meiji Jingu Gyoen</strong> (Inner Garden) is in <strong>iris-blooming season</strong> in mid-May, easily the prettiest the garden gets all year (¥500). Then cross into <strong>Yoyogi Park</strong> next door — Sunday brings rockabilly dancers, but on a Tuesday it's just a beautiful big city park.
+          Train one stop to Harajuku, then walk into the massive forested shrine — feels like leaving Tokyo entirely. <a href="https://www.meijijingu.or.jp/en/" target="_blank" rel="noopener"><strong>Meiji Jingu Gyoen</strong></a> (Inner Garden) is in <strong>iris-blooming season</strong> in mid-May, easily the prettiest the garden gets all year (¥500). Then cross into <strong>Yoyogi Park</strong> next door — Sunday brings rockabilly dancers, but on a Tuesday it's just a beautiful big city park.
         </div>
       </div>
 
@@ -802,7 +850,7 @@
           <ul class="clean" style="margin-top:8px;">
             <li><strong>MEGA Don Quijote Shibuya</strong> — chaotic 7-floor discount megastore (cosmetics, snacks, electronics, souvenirs). A Tokyo experience in itself.</li>
             <li><strong>RURU SHIBUYA</strong> — boutique chocolate shop / patisserie tucked nearby — beautiful gift boxes</li>
-            <li><strong>Shibuya Sky</strong> — 360° open-air rooftop on top of Shibuya Scramble Square, 230m up. <strong>Book the 5:00 pm slot online</strong> to catch sunset with Mt. Fuji on a clear day — best view in central Tokyo. Cross <strong>Shibuya Scramble</strong> on the way back down.</li>
+            <li><a href="https://www.shibuya-scramble-square.com/sky/" target="_blank" rel="noopener"><strong>Shibuya Sky</strong></a> — 360° open-air rooftop on top of Shibuya Scramble Square, 230m up. <strong>Book the 5:00 pm slot online</strong> to catch sunset with Mt. Fuji on a clear day — best view in central Tokyo. Cross <strong>Shibuya Scramble</strong> on the way back down.</li>
           </ul>
         </div>
       </div>
@@ -882,6 +930,7 @@
 
     <!-- DAY 6 -->
     <div class="day" id="day6">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Arashiyama_013.jpg" alt="Arashiyama Bamboo Grove">
       <div class="day-header">
         <span class="day-num">06</span>
         <span class="day-date">Thursday, May 14 — Arashiyama</span>
@@ -890,7 +939,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
-        <div class="timeblock-title">Kinkaku-ji (Golden Pavilion) <span class="pill gold">Wanderlog must</span></div>
+        <div class="timeblock-title"><a href="https://en.wikipedia.org/wiki/Kinkaku-ji" target="_blank" rel="noopener">Kinkaku-ji (Golden Pavilion)</a> <span class="pill gold">Wanderlog must</span></div>
         <div class="timeblock-body">
           Taxi from hotel ~20 min. The actual gold-leafed temple reflecting on its mirror pond — opens 9 am but get there <strong>right at opening</strong> to beat tour buses. 45 minutes inside. ¥500. From here, taxi or bus 30 min to Arashiyama.
         </div>
@@ -900,7 +949,7 @@
         <div class="timeblock-time">Mid-Morning</div>
         <div class="timeblock-title">Tenryū-ji &amp; the Bamboo Grove <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
-          Arrive Arashiyama ~10:30 am. Visit <strong>Tenryū-ji</strong> first (UNESCO Zen temple, breathtaking pond garden), then enter the famous bamboo grove from the back of its precinct — the angle most photographers don't know. The grove is genuinely stunning when the wind moves through it.
+          Arrive Arashiyama ~10:30 am. Visit <a href="https://www.tenryuji.com/en/" target="_blank" rel="noopener"><strong>Tenryū-ji</strong></a> first (UNESCO Zen temple, breathtaking pond garden), then enter the famous <a href="https://en.wikipedia.org/wiki/Arashiyama" target="_blank" rel="noopener">bamboo grove</a> from the back of its precinct — the angle most photographers don't know. The grove is genuinely stunning when the wind moves through it.
         </div>
       </div>
 
@@ -926,7 +975,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Afternoon</div>
-        <div class="timeblock-title">Hozugawa River Boat Ride <span class="pill">From Wanderlog</span></div>
+        <div class="timeblock-title"><a href="https://www.hozugawakudari.jp/en" target="_blank" rel="noopener">Hozugawa River Boat Ride</a> <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
           From Kameoka, take the 2-hour traditional wooden boat ride back down the river through the gorge — three boatmen poling and steering through small rapids. A genuine highlight. Roughly ¥4,500 per person; first boat 9 am, last 3:30 pm. (Grant did this and rated it as one of his Kyoto highlights.)
         </div>
@@ -951,6 +1000,7 @@
 
     <!-- DAY 7 -->
     <div class="day" id="day7">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Nara_Park_-_panoramio_%282%29.jpg" alt="Bowing deer at Nara Park">
       <div class="day-header">
         <span class="day-num">07</span>
         <span class="day-date">Friday, May 15 — Nara &amp; Higashiyama</span>
@@ -967,7 +1017,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
-        <div class="timeblock-title">Tōdai-ji &amp; Nara Park <span class="pill gold">Wanderlog must</span></div>
+        <div class="timeblock-title"><a href="https://www.todaiji.or.jp/en/" target="_blank" rel="noopener">Tōdai-ji</a> &amp; <a href="https://en.wikipedia.org/wiki/Nara_Park" target="_blank" rel="noopener">Nara Park</a> <span class="pill gold">Wanderlog must</span></div>
         <div class="timeblock-body">
           15-min walk from Nara Station to <strong>Nara Park</strong> — the famous park where 1,000+ wild but tame deer wander free. Buy "shika senbei" deer crackers (¥200) — the deer have learned to bow politely for them. Then continue to <strong>Tōdai-ji</strong>, the world's largest wooden building, housing a 15-meter-tall bronze Daibutsu (Great Buddha) that's been there since 752 AD. ¥800 entry. Allow 2 hours total. Walk back to the station via the small temples and shops along Sanjō-dori.
         </div>
@@ -985,7 +1035,7 @@
         <div class="timeblock-time">Afternoon</div>
         <div class="timeblock-title">Higashiyama walk: Kiyomizu-dera → Sannenzaka → Hōkan-ji Pagoda <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
-          Taxi to Kiyomizu-zaka. Start at <strong>Kiyomizu-dera</strong> (UNESCO temple on a wooden stage above the city, ¥400), then descend the preserved stone streets of <strong>Sannenzaka</strong> and <strong>Ninenzaka</strong>, lined with old wooden shops. Pass <strong>Hōkan-ji Temple (Yasaka Pagoda)</strong> — the iconic five-story wooden pagoda framed by old Kyoto roofs.
+          Taxi to Kiyomizu-zaka. Start at <a href="https://www.kiyomizudera.or.jp/en/" target="_blank" rel="noopener"><strong>Kiyomizu-dera</strong></a> (UNESCO temple on a wooden stage above the city, ¥400), then descend the preserved stone streets of <strong>Sannenzaka</strong> and <strong>Ninenzaka</strong>, lined with old wooden shops. Pass <a href="https://en.wikipedia.org/wiki/Yasaka_Pagoda" target="_blank" rel="noopener"><strong>Hōkan-ji Temple (Yasaka Pagoda)</strong></a> — the iconic five-story wooden pagoda framed by old Kyoto roofs.
         </div>
       </div>
 
@@ -1024,7 +1074,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
-        <div class="timeblock-title">Nijō Castle <span class="pill">Across from hotel</span></div>
+        <div class="timeblock-title"><a href="https://nijo-jocastle.city.kyoto.lg.jp/?lang=en" target="_blank" rel="noopener">Nijō Castle</a> <span class="pill">Across from hotel</span></div>
         <div class="timeblock-body">
           Right across the street from the hotel — walk over before breakfast crowds. A 17th-century shogun's residence with the famous "nightingale floors" that chirp when stepped on (anti-ninja design). Beautiful gardens; about 75 minutes. ¥1,300.
         </div>
@@ -1069,6 +1119,7 @@
 
     <!-- DAY 9 -->
     <div class="day" id="day9">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Hakonejinja_-01.jpg" alt="Hakone Shrine red torii in Lake Ashi">
       <div class="day-header">
         <span class="day-num">09</span>
         <span class="day-date">Sunday, May 17 — Lake Ashi &amp; the Crater</span>
@@ -1077,7 +1128,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Pre-breakfast</div>
-        <div class="timeblock-title">Sunrise onsen + Hakone Shrine torii <span class="pill gold">Iconic photo</span></div>
+        <div class="timeblock-title">Sunrise onsen + <a href="https://en.wikipedia.org/wiki/Hakone_Shrine" target="_blank" rel="noopener">Hakone Shrine</a> torii <span class="pill gold">Iconic photo</span></div>
         <div class="timeblock-body">
           Wake early. Soak. Then walk 15 minutes to <strong>Hakone Shrine</strong> — the famous floating red torii gate in Lake Ashi with Fuji behind it. Get there before 8 am or there's a 60-minute photo line. Quiet at sunrise.
         </div>
@@ -1085,7 +1136,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Mid-morning</div>
-        <div class="timeblock-title">Hakone Sightseeing Cruise (Pirate Ship)</div>
+        <div class="timeblock-title"><a href="https://www.hakone-kankosen.co.jp/foreign/en/" target="_blank" rel="noopener">Hakone Sightseeing Cruise</a> (Pirate Ship)</div>
         <div class="timeblock-body">
           Yes, it's a pirate ship — kind of camp, totally fun. 35-min cruise from Motohakone-ko across Lake Ashi to Togendai. ¥1,200. The whole Hakone Round Course works in a loop and is included in the <strong>Hakone Free Pass</strong> (¥6,100, worth it).
         </div>
@@ -1093,7 +1144,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Late Morning</div>
-        <div class="timeblock-title">Hakone Ropeway over Owakudani <span class="pill">Volcanic valley</span></div>
+        <div class="timeblock-title"><a href="https://www.hakoneropeway.co.jp/foreign/en/" target="_blank" rel="noopener">Hakone Ropeway</a> over <a href="https://en.wikipedia.org/wiki/%C5%8Cwakudani" target="_blank" rel="noopener">Owakudani</a> <span class="pill">Volcanic valley</span></div>
         <div class="timeblock-body">
           From Togendai, take the cable car high over the active volcanic valley — sulfur steam vents, black rock, and (on a clear day) huge Mt. Fuji views from the gondola. Get off at <strong>Owakudani Station</strong> and try the <strong>kuro-tamago</strong> (eggs hard-boiled in the sulfur springs — black shell, normal yolk, said to add 7 years to your life).
         </div>
@@ -1117,7 +1168,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Afternoon</div>
-        <div class="timeblock-title">Hakone Open-Air Museum <span class="pill gold">Highlight</span></div>
+        <div class="timeblock-title"><a href="https://www.hakone-oam.or.jp/en/" target="_blank" rel="noopener">Hakone Open-Air Museum</a> <span class="pill gold">Highlight</span></div>
         <div class="timeblock-body">
           70,000 sqm of outdoor sculpture park with works by Henry Moore, Rodin, Miro — plus a dedicated <strong>Picasso Pavilion</strong> with 300+ works. There's also a free hot-spring foot bath in the middle of the park. About 2 hours. ¥1,800.
         </div>
@@ -1197,6 +1248,7 @@
 
     <!-- DAY 11 -->
     <div class="day" id="day11">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/5/58/Tokyo_Tower_2023.jpg" alt="Tokyo Tower at twilight">
       <div class="day-header">
         <span class="day-num">11</span>
         <span class="day-date">Tuesday, May 19 — Final Full Day</span>
@@ -1243,7 +1295,7 @@
 
       <div class="timeblock">
         <div class="timeblock-time">Late Afternoon</div>
-        <div class="timeblock-title">Tokyo Tower &amp; Zojoji Temple at sunset <span class="pill gold">Last view</span></div>
+        <div class="timeblock-title"><a href="https://www.tokyotower.co.jp/en/" target="_blank" rel="noopener">Tokyo Tower</a> &amp; Zojoji Temple at sunset <span class="pill gold">Last view</span></div>
         <div class="timeblock-body">
           The original Tokyo Tower (1958) — a 5-min walk from EDITION. The view is more characterful than Skytree, especially with <strong>Zojoji Temple</strong> (a major Buddhist temple from 1393) framed in front. Sunset is the move — golden hour over the city, then the tower lights up red.
         </div>
