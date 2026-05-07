@@ -440,6 +440,13 @@
     font-weight: 700;
     margin-bottom: 6px;
   }
+  /* Confirmed-booking callout — visually distinct green */
+  .callout.booked {
+    background: linear-gradient(135deg, #e8f4ea 0%, #d4ead7 100%);
+    border-left-color: #5a8c3e;
+  }
+  .callout.booked .callout-title { color: #2d6f1f; letter-spacing: 2.5px; }
+  .callout.booked code { background: rgba(0,0,0,.06); padding: 1px 6px; border-radius: 3px; font-size: .85em; }
 
   /* Restaurants section */
   .food-grid {
@@ -797,68 +804,12 @@
       </div>
     </div>
 
-    <!-- DAY 3 -->
+    <!-- DAY 2: Modern Tokyo (was Day 3 Sumo - swapped to put Sumo on May 12 per Klook booking) -->
     <div class="day" id="day3">
-      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers at Ryōgoku Kokugikan">
-      <div class="day-header">
-        <span class="day-num">02</span>
-        <span class="day-date">Monday, May 11 — Imperial Tokyo &amp; Sumo</span>
-      </div>
-      <p class="day-tagline">Imperial Palace · Tsukiji · Grand Sumo Tournament</p>
-
-      <div class="day-snapshot">
-        <div class="day-snapshot-row">
-          <div><div class="label">📍 Where</div><div class="value">Marunouchi → Tsukiji → Ryōgoku</div></div>
-          <div><div class="label">🎯 Anchors</div><div class="value">Imperial Palace gardens · Tsukiji Outer Market · Grand Sumo Tournament</div></div>
-          <div><div class="label">🍽️ Eat</div><div class="value">Tsukiji food crawl (lunch) · Chanko Tomoegata (dinner, sumo hot pot)</div></div>
-          <div><div class="label">💡 Optional</div><div class="value">Sumō Museum (free, next to arena) · Bar High Five nightcap</div></div>
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Seimon_Ishibashi.JPG/330px-Seimon_Ishibashi.JPG" alt="Imperial Palace bridge">
-        <div class="timeblock-title">Imperial Palace East Gardens</div>
-        <div class="timeblock-body">
-          The grounds of the former Edo Castle, free entry, mostly flat paths through stone walls and Japanese gardens. About 90 minutes is plenty. Beautiful azalea blooms in mid-May.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/2018_Tsukiji_fish_market.jpg/330px-2018_Tsukiji_fish_market.jpg" alt="Tsukiji Outer Market">
-        <div class="timeblock-title"><a href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener">Tsukiji Outer Market</a> food crawl <span class="pill gold">Highlight</span></div>
-        <div class="timeblock-body">
-          Inner market moved to Toyosu, but the <strong>outer market is still a wonderland</strong> — tamago (sweet egg) on a stick, wagyu skewers, A5 beef croquettes, dashimaki tamago, melon-pan, fresh strawberries, oysters if they want them. Graze through 6–8 stalls. Plenty for non-sushi eaters; the cooked food stalls are the real treat anyway.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon &amp; Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Asashoryu_fight_Jan08.JPG/330px-Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers">
-        <div class="timeblock-title"><a href="https://www.sumo.or.jp/En/" target="_blank" rel="noopener">Grand Sumo May Tournament</a> <span class="pill crimson">Book Now</span></div>
-        <div class="timeblock-body">
-          Held only three times a year in Tokyo — and it's running while you're there. Doors open at 8 am but <strong>real action starts around 3:30 pm</strong>; top-division (makuuchi) bouts run 4–6 pm. Get <strong>Box B or Box C seats</strong> (4-person tatami boxes near the floor) — ¥9,500–¥11,500 per seat. Ryōgoku Kokugikan, 30 min by taxi from the EDITION.
-          <br><br>
-          <strong>Buy tickets at:</strong> <a href="https://www.buysumotickets.com/" target="_blank" rel="noopener">BuySumoTickets.com</a> or <a href="https://www.sumo.or.jp/EnTicket/" target="_blank" rel="noopener">sumo.or.jp</a> (official) — release dates are typically 1 month in advance, sell out fast.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dinner</div>
-        <div class="timeblock-title">Chanko nabe in Ryōgoku</div>
-        <div class="timeblock-body">
-          The traditional one-pot stew sumo wrestlers eat to bulk up — surprisingly delicious and healthy. <strong>Chanko Tomoegata</strong> (run by a former wrestler) is the classic move. Walking distance from the arena.
-        </div>
-      </div>
-    </div>
-
-    <!-- DAY 4 -->
-    <div class="day" id="day4">
       <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Manekineko1003.jpg" alt="Maneki-neko lucky cats at Gotokuji Temple">
       <div class="day-header">
-        <span class="day-num">03</span>
-        <span class="day-date">Tuesday, May 12 — Lucky Cats &amp; Modern Tokyo</span>
+        <span class="day-num">02</span>
+        <span class="day-date">Monday, May 11 — Lucky Cats &amp; Modern Tokyo</span>
       </div>
       <p class="day-tagline">Gotokuji · Shiro-Hige's · Meiji · Harajuku · Shibuya Sky</p>
 
@@ -954,7 +905,73 @@
       </div>
     </div>
 
-    <!-- DAY 5 -->
+    <!-- DAY 3: Sumo Tournament (BOOKED) -->
+    <div class="day" id="day4">
+      <img class="day-hero" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers at Ryōgoku Kokugikan">
+      <div class="day-header">
+        <span class="day-num">03</span>
+        <span class="day-date">Tuesday, May 12 — Imperial Tokyo &amp; Sumo</span>
+      </div>
+      <p class="day-tagline">Imperial Palace · Tsukiji · Grand Sumo Tournament</p>
+
+      <div class="callout booked">
+        <div class="callout-title">✓ Booked · Cannot Change</div>
+        <p style="margin:0; font-size:.95rem;">
+          <strong>Tokyo Sumo Tournament — Guided Experience with Assigned Seat &amp; Ticket</strong> ·
+          <strong>B seating</strong> · Adult × 2 · Tue May 12 <strong>13:00 start</strong>
+          · Booking ref <code>FQP990578</code> ·
+          <a href="https://www.klook.com/voucher-new/f77e681c-fcd6-4afa-49aa-da8e64d54b93?lang=en_US&amp;from_source=email&amp;from_medium=system_email&amp;from_campaign=TTD_pretrip2_booking_confirmation_base" target="_blank" rel="noopener">View Klook voucher ↗</a>
+        </p>
+      </div>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Marunouchi → Tsukiji → Ryōgoku</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Imperial Palace gardens · Tsukiji Outer Market · <strong>Sumo at 13:00 (booked)</strong></div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Tsukiji food crawl (lunch) · Chanko Tomoegata (dinner, sumo hot pot)</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Sumō Museum (free, next to arena) · Bar High Five nightcap</div></div>
+        </div>
+      </div>
+
+      <div class="timeblock">
+        <div class="timeblock-time">Morning</div>
+        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Seimon_Ishibashi.JPG/330px-Seimon_Ishibashi.JPG" alt="Imperial Palace bridge">
+        <div class="timeblock-title">Imperial Palace East Gardens</div>
+        <div class="timeblock-body">
+          The grounds of the former Edo Castle, free entry, mostly flat paths through stone walls and Japanese gardens. About 90 minutes is plenty. Beautiful azalea blooms in mid-May. <strong>Aim to wrap by 11:30 am</strong> so there's time for lunch and getting to the sumo meet-up.
+        </div>
+      </div>
+
+      <div class="timeblock">
+        <div class="timeblock-time">Lunch</div>
+        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/2018_Tsukiji_fish_market.jpg/330px-2018_Tsukiji_fish_market.jpg" alt="Tsukiji Outer Market">
+        <div class="timeblock-title"><a href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener">Tsukiji Outer Market</a> food crawl <span class="pill gold">Highlight</span></div>
+        <div class="timeblock-body">
+          Inner market moved to Toyosu, but the <strong>outer market is still a wonderland</strong> — tamago (sweet egg) on a stick, wagyu skewers, A5 beef croquettes, dashimaki tamago, melon-pan, fresh strawberries, oysters if they want them. Graze through 6–8 stalls. <strong>Eat by 12:15</strong>, then taxi to Ryōgoku (20 min) for the sumo meet-up.
+        </div>
+      </div>
+
+      <div class="timeblock">
+        <div class="timeblock-time">13:00 — 18:00</div>
+        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Asashoryu_fight_Jan08.JPG/330px-Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers">
+        <div class="timeblock-title">Grand Sumo Tournament — guided tour <span class="pill gold">Booked</span></div>
+        <div class="timeblock-body">
+          <strong>Meet the Klook guide at 13:00</strong> at the Ryōgoku Kokugikan entrance. The guide explains the rules and ritual, then you watch the lower divisions, the entrance ceremony around 3 pm, and the top-division (makuuchi) bouts from 3:30–6 pm in your reserved <strong>Box B seats</strong>. Bring the e-voucher (<a href="https://www.klook.com/voucher-new/f77e681c-fcd6-4afa-49aa-da8e64d54b93?lang=en_US&amp;from_source=email&amp;from_medium=system_email&amp;from_campaign=TTD_pretrip2_booking_confirmation_base" target="_blank" rel="noopener">link</a>).
+          <br><br>
+          Box seats are 4-person tatami boxes near the floor — shoes off, shared with another pair. Snacks and drinks allowed inside the arena. Final ceremony around 6 pm.
+        </div>
+      </div>
+
+      <div class="timeblock">
+        <div class="timeblock-time">Dinner</div>
+        <div class="timeblock-title">Chanko nabe in Ryōgoku</div>
+        <div class="timeblock-body">
+          The traditional one-pot stew sumo wrestlers eat to bulk up — surprisingly delicious and healthy. <strong>Chanko Tomoegata</strong> (run by a former wrestler) is the classic move. Walking distance from the arena. After dinner, taxi back to the EDITION (~25 min).
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
     <div class="day" id="day5">
       <div class="day-header">
         <span class="day-num">04</span>
