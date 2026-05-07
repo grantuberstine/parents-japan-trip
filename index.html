@@ -298,6 +298,32 @@
     margin-bottom: 20px;
     font-size: 1rem;
   }
+  /* Day snapshot box (quick area + activities + food summary) */
+  .day-snapshot {
+    background: linear-gradient(135deg, var(--paper-warm) 0%, #ede4d3 100%);
+    padding: 18px 22px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    border-left: 3px solid var(--gold);
+    font-size: .92rem;
+  }
+  .day-snapshot-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px 22px;
+  }
+  .day-snapshot-row > div .label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-dark);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .day-snapshot-row > div .value {
+    color: var(--ink);
+    line-height: 1.5;
+  }
   .timeblock {
     margin: 20px 0;
     padding: 18px 0 18px 22px;
@@ -698,6 +724,15 @@
       </div>
       <p class="day-tagline">Land · settle in · Sensō-ji · easy first dinner</p>
 
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Haneda → Toranomon → Asakusa</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Land in Tokyo · Sensō-ji · early dinner</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Asakusa Imahan (sukiyaki) · alt: Sometaro (okonomiyaki)</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Blue Room nightcap if energy</div></div>
+        </div>
+      </div>
+
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
         <div class="timeblock-title">Land at Haneda &amp; transfer to EDITION</div>
@@ -743,6 +778,15 @@
         <span class="day-date">Monday, May 11 — Imperial Tokyo &amp; Sumo</span>
       </div>
       <p class="day-tagline">Imperial Palace · Tsukiji · Grand Sumo Tournament</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Marunouchi → Tsukiji → Ryōgoku</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Imperial Palace gardens · Tsukiji Outer Market · Grand Sumo Tournament</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Tsukiji food crawl (lunch) · Chanko Tomoegata (dinner, sumo hot pot)</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Sumō Museum (free, next to arena) · Bar High Five nightcap</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
@@ -790,6 +834,15 @@
         <span class="day-date">Tuesday, May 12 — Lucky Cats &amp; Modern Tokyo</span>
       </div>
       <p class="day-tagline">Gotokuji · Shiro-Hige's · Meiji · Harajuku · Shibuya Sky</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Setagaya → Harajuku/Omotesando → Shibuya</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Gotokuji lucky cats · Shiro-Hige's · Meiji Jingu · Shibuya Sky sunset</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Katsudon-ya Zuicho (lunch) · Tsubaki Salon (snack) · Gyukatsu Katsugyu (dinner)</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Kichijōji Petit Mura · Samoyed Cafe · MEGA Don Q · RURU Shibuya</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
@@ -882,12 +935,20 @@
       </div>
       <p class="day-tagline">Shinkansen · Pontocho stroll</p>
 
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Tokyo Bay → Shinkansen → Kyoto downtown</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">teamLab Planets morning · Shinkansen Green Car · Pontocho dinner</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Yukichi Honpo (Kyoto ramen) · glänta café · Mishima-tei sukiyaki dinner</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Hamarikyu walk before train · Mitsui Thermal Spring spa</div></div>
+        </div>
+      </div>
+
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Hamarikyu_Garden_as_seen_from_Shiodome.jpg/330px-Hamarikyu_Garden_as_seen_from_Shiodome.jpg" alt="Hamarikyu Gardens">
-        <div class="timeblock-title">Slow morning, last walk in Hamarikyu</div>
+        <div class="timeblock-title"><a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets Tokyo</a> <span class="pill crimson">Reservation</span> <span class="pill">From Wanderlog</span></div>
         <div class="timeblock-body">
-          Hotel breakfast, pack up, leave bags with the concierge. One last stroll in Hamarikyu Gardens — the rapeseed/cosmos field is in full color in May.
+          Last Tokyo activity before the train. Quick breakfast at the EDITION, leave bags with concierge, taxi 15 min to Toyosu. <strong>Book the 9:00 or 9:30 am slot online</strong> — 90 min inside, the immersive digital art experience that defines Tokyo for many visitors. Barefoot wading through warm water, mirrored infinity rooms, LED orchids. Back at the hotel by 11:30 to pick up bags.
         </div>
       </div>
 
@@ -952,6 +1013,15 @@
         <span class="day-date">Thursday, May 14 — Arashiyama</span>
       </div>
       <p class="day-tagline">Sagano railway · Hozugawa boat · bamboo grove · monkeys · Kinkaku-ji</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Western Kyoto · Arashiyama · Kameoka</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Sagano Romantic Train · Hozugawa Boat · Tenryū-ji + Bamboo · Kinkaku-ji</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Shōraian (yudofu) or Yamamoto Menzou (udon) for lunch · Toki kaiseki at Mitsui dinner</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Arashiyama Monkey Park (steep) · Mitsui Thermal Spring soak before dinner</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Pre-dawn</div>
@@ -1031,6 +1101,15 @@
       </div>
       <p class="day-tagline">Tōdai-ji · Nara deer · Yasaka Pagoda · K36 sunset</p>
 
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Nara → Eastern Kyoto · Higashiyama · Gion</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Tōdai-ji + Nara Park · Higashiyama walk (Kiyomizu-dera, Yasaka Pagoda) · K36 sunset cocktails</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Menbaka Fire Ramen (lunch) · Sannenzaka dessert crawl · Mishima-tei sukiyaki (dinner)</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Fushimi Inari sunrise · Philosopher's Path · glänta Ring Workshop</div></div>
+        </div>
+      </div>
+
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
         <div class="timeblock-title">Train to Nara <span class="pill gold">Wanderlog must</span></div>
@@ -1101,6 +1180,15 @@
       </div>
       <p class="day-tagline">Nijō Castle · Train to ryokan country</p>
 
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Nijō → Shinkansen → Hakone Gora</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Nijō Castle morning · glänta Ring Workshop · train to Gora · onsen check-in</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Ekiben on Shinkansen · in-room kaiseki dinner at Gora KARAKU</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Book spa massage at check-in · reserve a private onsen room</div></div>
+        </div>
+      </div>
+
       <div class="timeblock">
         <div class="timeblock-time">Early Morning</div>
         <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/330px-NinomaruPalace.jpg" alt="Nijō Castle Ninomaru Palace">
@@ -1164,6 +1252,15 @@
         <span class="day-date">Sunday, May 17 — Hakone Loop</span>
       </div>
       <p class="day-tagline">Hakone Shrine · pirate ship · Owakudani · Open-Air Museum</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Gora → Owakudani → Lake Ashi → back to Gora</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Hakone Open-Air Museum · Ropeway to Owakudani · Pirate Ship cruise · Hakone Shrine torii · Gora Park walk</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">La Terrazza Ashinoko (lakeside lunch) · kuro-tamago at Owakudani · 2nd kaiseki dinner</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Spa massage · private onsen room reservation · Pola Museum of Art</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Pre-breakfast</div>
@@ -1249,7 +1346,16 @@
         <span class="day-num">09</span>
         <span class="day-date">Monday, May 18 — Hakone → Tokyo &amp; Shinjuku</span>
       </div>
-      <p class="day-tagline">Romancecar · Shinjuku stops · Roppongi sunset</p>
+      <p class="day-tagline">Romancecar · Shinjuku walk · JW Marriott check-in</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Hakone-Yumoto → Shinjuku → Takanawa</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Romancecar to Tokyo · Shinjuku walking tour · check-in JW Marriott · in-hotel dinner</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Kakō (washoku) or Sefino (Mediterranean) at the JW Marriott</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Tokyo Metropolitan Bldg observation · Don Quijote Kabukicho · Kumachan Onsen · Executive Lounge sunset</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
@@ -1324,6 +1430,15 @@
         <span class="day-date">Tuesday, May 19 — Final Full Day</span>
       </div>
       <p class="day-tagline">Yanaka · Ginza · Tokyo Tower · farewell dinner</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Yanaka → Aoyama → Ginza → Roppongi → Ebisu</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Yanaka old town · private tea ceremony · Ginza shopping · Tokyo Tower sunset · farewell dinner</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Hagiso breakfast · Tonkatsu Maisen or Tamahide oyakodon (lunch) · Shodai Ebisu (dinner) ★</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Yakiniku Jambo · Ningyocho Imahan · Bar High Five nightcap</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
@@ -1401,6 +1516,15 @@
         <span class="day-date">Wednesday, May 20 — Departure</span>
       </div>
       <p class="day-tagline">Sayonara</p>
+
+      <div class="day-snapshot">
+        <div class="day-snapshot-row">
+          <div><div class="label">📍 Where</div><div class="value">Takanawa → Haneda Airport</div></div>
+          <div><div class="label">🎯 Anchors</div><div class="value">Final breakfast · airport transfer (20 min to Haneda)</div></div>
+          <div><div class="label">🍽️ Eat</div><div class="value">Le Cres (JW Marriott) — artisanal Japanese-flavor croissants</div></div>
+          <div><div class="label">💡 Optional</div><div class="value">Sengakuji Temple walk · Imperial Hotel Old Imperial Bar coffee</div></div>
+        </div>
+      </div>
 
       <div class="timeblock">
         <div class="timeblock-time">Morning</div>
@@ -1800,6 +1924,30 @@
           <li>Bags 160–250 cm — must reserve a "<strong>tokudai-tedaisu</strong>" oversized luggage seat at booking (free, but limited)</li>
           <li>Bags &gt;250 cm — not allowed (most large suitcases are fine)</li>
           <li>Tip: pack one large checked bag + one carry-on per person to stay safely under 160 cm</li>
+        </ul>
+      </div>
+
+      <div class="logistics-card">
+        <h4>Apps to install before you go</h4>
+        <ul class="clean">
+          <li><strong>Google Maps</strong> — best for transit routing in Japan</li>
+          <li><strong>GO (formerly JapanTaxi)</strong> — best taxi-hailing app, English-friendly</li>
+          <li><strong>Smart-EX</strong> — Shinkansen booking, QR boarding</li>
+          <li><strong>Suica on Apple Wallet</strong> — load before arriving, tap-to-ride on all trains/buses</li>
+          <li><strong>Visit Japan Web</strong> — pre-fill arrival forms, save 30 min at immigration</li>
+          <li><strong>Google Translate</strong> — camera mode reads menus instantly</li>
+          <li><strong>Marriott Bonvoy</strong> — for digital keys + concierge messaging</li>
+        </ul>
+      </div>
+
+      <div class="logistics-card">
+        <h4>Money &amp; payments</h4>
+        <ul class="clean">
+          <li>Bring <strong>¥30,000–¥50,000</strong> per person to start, get more from ATMs as needed</li>
+          <li><strong>7-Eleven and Family Mart ATMs</strong> accept all foreign cards 24/7</li>
+          <li>Most restaurants/hotels take credit cards, but small ramen shops, temples, and taxis often need cash</li>
+          <li><strong>No tipping</strong> — never. Service charge is built in everywhere</li>
+          <li>Tax-free shopping at major stores: bring passport, spend ¥5,000+</li>
         </ul>
       </div>
     </div>
