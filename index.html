@@ -325,6 +325,63 @@
     .masterlist-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
+  /* Picks (activities + food) — flexible list cards instead of rigid timeblocks */
+  .picks-header {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 28px 0 14px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .picks-header:first-of-type { padding-top: 24px; }
+  .picks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .pick {
+    background: var(--paper-warm);
+    border-radius: 4px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--accent-soft);
+    transition: border-left-color .15s, transform .15s;
+  }
+  .pick:hover {
+    border-left-color: var(--accent);
+    transform: translateX(2px);
+  }
+  .pick-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .pick-name a { color: inherit; border-bottom: 1px dotted var(--accent-soft); }
+  .pick-name a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .pick-meta {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .pick-body {
+    margin: 0;
+    font-size: .88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .pick-body a { font-size: inherit; }
+  .pick.must {
+    border-left-color: var(--gold);
+    background: linear-gradient(135deg, var(--paper-warm) 0%, #f5ecd9 100%);
+  }
+  .pick.must .pick-meta { color: var(--gold); }
+
   /* Day snapshot box (quick area + activities + food summary) */
   .day-snapshot {
     background: linear-gradient(135deg, var(--paper-warm) 0%, #ede4d3 100%);
@@ -824,7 +881,7 @@
     <span class="section-label">Day by Day</span>
     <h2>The Itinerary</h2>
     <p style="color: var(--ink-soft); max-width: 700px;">
-      Each day is paced with one or two anchor activities, a leisurely lunch window, and an evening that's never rushed. Most days end before 7 pm so there's room for a relaxed dinner and an early-ish night. Mornings are deliberately light to start.
+      Each day shows what's <strong>booked</strong> (fixed anchors) plus a menu of <strong>activities and food</strong> in that area to pick from. No strict schedule — let energy and weather decide. Things noted as "next to" or "walks to" pair naturally if you want to bundle them.
     </p>
 
     <!-- DAY 1: Arrival + Old Tokyo -->
@@ -845,39 +902,46 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <div class="timeblock-title">Land at Haneda &amp; transfer to EDITION</div>
-        <div class="timeblock-body">
-          Most US flights from the West Coast land at Haneda (HND) around 9–11 am after the overnight crossing. Customs + bag claim takes about 30 min. Easiest transfer: <strong>Airport Limousine Bus</strong> (¥1,200, ~40 min direct to Toranomon Hills) or taxi (¥7,000–9,000 with luggage). Drop bags at the EDITION concierge if the room isn't ready (3 pm check-in).
+      <div class="callout">
+        <div class="callout-title">Logistics Note</div>
+        <p style="margin:0; font-size:.92rem;">Land Haneda mid-morning. <strong>Airport Limousine Bus</strong> (~40 min, ¥1,200) or taxi (~30 min, ¥7,000–9,000) to the EDITION. Bag drop at concierge if pre-3pm check-in.</p>
+      </div>
+
+      <h3 class="picks-header">Activities · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://en.wikipedia.org/wiki/Sens%C5%8D-ji" target="_blank" rel="noopener">Sensō-ji Temple &amp; Nakamise Street</a></div>
+          <div class="pick-meta">Asakusa · 90 min · free · 25-min taxi from hotel</div>
+          <p class="pick-body">Tokyo's oldest Buddhist temple (645 AD). Enter through the giant red <strong>Kaminarimon</strong> lantern gate, walk Nakamise Dori with 89 stalls. Afternoon is actually nicer — cooler light, fewer tour groups.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://en.wikipedia.org/wiki/Hama-rikyu_Gardens" target="_blank" rel="noopener">Hamarikyu Gardens</a></div>
+          <div class="pick-meta">Tokyo Bay · 60 min · ¥300 · 10-min taxi from hotel</div>
+          <p class="pick-body">17th-century shogunal garden surrounded by skyscrapers, with a teahouse on a pond. Quiet, contemplative, easy on tired legs.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sensoji_2023.jpg/330px-Sensoji_2023.jpg" alt="Sensō-ji">
-        <div class="timeblock-title"><a href="https://en.wikipedia.org/wiki/Sens%C5%8D-ji" target="_blank" rel="noopener">Sensō-ji Temple</a> &amp; Nakamise Street <span class="pill">Iconic</span></div>
-        <div class="timeblock-body">
-          Tokyo's oldest Buddhist temple (founded 645 AD). 25-min taxi from the EDITION. Enter through the giant red <strong>Kaminarimon</strong> lantern gate, walk Nakamise Dori with its 89 stalls of crackers, fans, and sweets, and arrive at the main hall. <strong>Afternoon arrival is fine</strong> — cooler light, fewer tour groups than morning. Allow about 90 minutes.
+      <h3 class="picks-header">Food &amp; drinks · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.asakusaimahan.co.jp/en/" target="_blank" rel="noopener">Asakusa Imahan</a></div>
+          <div class="pick-meta">Sukiyaki · No fish · walks to Sensō-ji</div>
+          <p class="pick-body">130-year-old sukiyaki house. Premium beef cooked tableside in cast iron, dipped in raw egg. Eat early (5–6 pm) to fight jet lag — they can crash by 9.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Early Dinner</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sukiyaki_01.jpg/330px-Sukiyaki_01.jpg" alt="Sukiyaki hot pot">
-        <div class="timeblock-title">Asakusa Imahan — sukiyaki <span class="pill">No fish</span></div>
-        <div class="timeblock-body">
-          A 130-year-old institution serving classic sukiyaki — premium beef cooked tableside in cast iron with sweet-soy broth, dipped in raw egg. Lighter lunch sets available. Walking distance from Sensō-ji, no reservation needed but go right at opening to beat the wave. <strong>Eat early</strong> (5–6 pm) so they can crash by 9 — fights the jet lag.
-          <br><br>
-          <em>Alt:</em> <strong>Sometaro</strong> for okonomiyaki — Japanese cabbage-and-pork pancakes you cook yourself on a tabletop griddle. Casual and fun.
+        <div class="pick">
+          <div class="pick-name">Sometaro</div>
+          <div class="pick-meta">Okonomiyaki · Casual · Asakusa</div>
+          <p class="pick-body">Japanese cabbage-and-pork pancakes you cook yourself on a tabletop griddle. Fun, casual alternative to Imahan.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <div class="timeblock-title">Back to the EDITION · early to bed</div>
-        <div class="timeblock-body">
-          Taxi back to Toranomon. Optional nightcap at the <strong>Blue Room</strong> in the lobby — the cobalt-lit cocktail bar — but skip if energy is gone. Sleep early. Tomorrow is a big day.
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.gotokyo.org/en/new-and-now/new-and-trending/240924/topics.html" target="_blank" rel="noopener">Toranomon Hills Yokocho</a></div>
+          <div class="pick-meta">Food alley · At the EDITION · easy default</div>
+          <p class="pick-body">26 chef-driven counters: yakitori, oden, ramen, kushikatsu, gyoza. Crash-friendly if Asakusa felt too far.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Blue Room nightcap</div>
+          <div class="pick-meta">Cocktails · In the lobby</div>
+          <p class="pick-body">The cobalt-lit cocktail bar — one of Tokyo's most photographed. Skip if energy's gone. Otherwise a perfect 30-min wind-down.</p>
         </div>
       </div>
     </div>
@@ -910,70 +974,51 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Slow morning</div>
-        <div class="timeblock-title">Breakfast at the EDITION · easy start</div>
-        <div class="timeblock-body">
-          Day 2, jet lag is real. Hotel breakfast, slow pace. Aim to leave by 10:15 to get to Shibuya for the 11:00 entry. 15-min taxi from Toranomon to Shibuya Sky.
+      <h3 class="picks-header">Activities · 2 booked + flexible picks</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.shibuya-scramble-square.com/sky/" target="_blank" rel="noopener">Shibuya Sky</a> · 11:00 entry</div>
+          <div class="pick-meta">Booked · Shibuya · 60 min · 15-min taxi from hotel</div>
+          <p class="pick-body">360° open-air rooftop, 230m up — best Tokyo view. Mid-morning is the clearest Mt. Fuji visibility window. Cross <strong>Shibuya Scramble</strong> on the way out.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets Tokyo</a> · skip-line Premium</div>
+          <div class="pick-meta">Booked · Toyosu · anytime · 90 min inside</div>
+          <p class="pick-body">Immersive digital art — barefoot through warm water, mirrored infinity rooms, LED orchids. Recommend <strong>5:00–6:30 pm entry</strong> — fewer crowds, best light transition. Skip-line means no queue.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Meiji Jingu &amp; Yoyogi Park</div>
+          <div class="pick-meta">Harajuku · 90 min · ¥500 (Inner Garden)</div>
+          <p class="pick-body">Train one stop from Shibuya. Massive forested shrine — feels like leaving Tokyo entirely. <strong>Iris-blooming season</strong> in mid-May (Gyoen Inner Garden). Yoyogi Park next door for a stroll.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Harajuku &amp; Omotesando stroll</div>
+          <div class="pick-meta">Walks from Meiji Jingu · 60–90 min</div>
+          <p class="pick-body">Omotesando's tree-lined avenue + Takeshita Street teen-culture spectacle. Optional stops: <strong>Samoyed Cafe moffu</strong> (reservation needed), <strong>Banana no Kamisama</strong>, <strong>Latte Pocket</strong>.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">11:00</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Shibuya_Crossing%2C_Aerial.jpg/330px-Shibuya_Crossing%2C_Aerial.jpg" alt="Shibuya Crossing">
-        <div class="timeblock-title"><a href="https://www.shibuya-scramble-square.com/sky/" target="_blank" rel="noopener">Shibuya Sky</a> 11:00 entry <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          The 360° open-air rooftop on top of Shibuya Scramble Square, 230m up — best view in central Tokyo. <strong>Mid-morning is actually the clearest Mt. Fuji visibility window</strong> (afternoon clouds build up). About 60 min on the deck. Cross <strong>Shibuya Scramble</strong> on the way back down.
+      <h3 class="picks-header">Food &amp; drinks · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Katsudon-ya Zuicho</div>
+          <div class="pick-meta">Pork cutlet · Shibuya · 5-min walk from Sky · queue 30–45 min</div>
+          <p class="pick-body">Tiny counter perfecting katsudon — crispy pork cutlet over rice with egg-and-onion. No reservations, totally worth the queue. Natural lunch after Shibuya Sky.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Katsudon_001.jpg/330px-Katsudon_001.jpg" alt="Katsudon">
-        <div class="timeblock-title">Katsudon-ya Zuicho — pork cutlet bowl <span class="pill gold">Wanderlog must</span></div>
-        <div class="timeblock-body">
-          5-min walk from Shibuya Sky. Tiny counter perfecting <strong>katsudon</strong> — crispy pork cutlet over rice with egg-and-onion. <strong>No reservations, 30–45 min queue, worth it.</strong> If the line's too long, alt: <strong>Tsubaki Salon</strong> (soufflé pancakes), or food on Shibuya Hikarie's restaurant floor.
+        <div class="pick">
+          <div class="pick-name">Tsubaki Salon</div>
+          <div class="pick-meta">Soufflé pancakes · Shibuya · snack</div>
+          <p class="pick-body">Famous jiggly Japanese soufflé pancakes with seasonal fruit. Great snack option if Katsudon-ya queue is too long.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Early Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Meiji_Jingu_2023-3.jpg/330px-Meiji_Jingu_2023-3.jpg" alt="Meiji Jingu Shrine">
-        <div class="timeblock-title">Meiji Jingu &amp; Yoyogi Park</div>
-        <div class="timeblock-body">
-          Train one stop to Harajuku, then walk into the massive forested shrine — feels like leaving Tokyo entirely. <a href="https://www.meijijingu.or.jp/en/" target="_blank" rel="noopener"><strong>Meiji Jingu Gyoen</strong></a> (Inner Garden) is in <strong>iris-blooming season</strong> in mid-May (¥500). Then cross into <strong>Yoyogi Park</strong> next door for a stroll.
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.gotokyo.org/en/new-and-now/new-and-trending/240924/topics.html" target="_blank" rel="noopener">Toranomon Hills Yokocho</a></div>
+          <div class="pick-meta">Food alley · At the EDITION · easy default</div>
+          <p class="pick-body">After teamLab in Toyosu, easiest to come back to the hotel. 26 chef-driven counters: yakitori, oden, ramen, kushikatsu, gyoza. Crash-friendly.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Mid Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Samojed00.jpg/330px-Samojed00.jpg" alt="Samoyed dog">
-        <div class="timeblock-title">Harajuku stroll <span class="pill">Optional</span></div>
-        <div class="timeblock-body">
-          Walk Omotesando's tree-lined avenue, cut to Takeshita Street. Optional stops:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Samoyed Cafe moffu</strong> — pet a fluffy samoyed (reservation needed)</li>
-            <li><strong>Banana no Kamisama</strong> — premium banana smoothies on Takeshita</li>
-            <li><strong>Latte Pocket</strong> — Harajuku coffee, photogenic latte art</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening (5–7pm)</div>
-        <div class="timeblock-title"><a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets Tokyo</a> · skip-the-line Premium <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          Taxi 25 min from Harajuku to Toyosu. With the Premium skip-the-line ticket, walk straight in any time — no queue. The <strong>immersive digital art experience</strong> Tokyo is famous for: barefoot wading through warm water, mirrored infinity rooms, LED orchids, koi projected on your feet. About 90 min inside. Aim for <strong>5:00–6:30 pm entry</strong> — fewer crowds and the best lighting transition.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Dinner</div>
-        <div class="timeblock-title">Toranomon Hills Yokocho at the EDITION <span class="pill">Easy default</span></div>
-        <div class="timeblock-body">
-          After teamLab in Toyosu, go straight back to the EDITION (15-min taxi). The <strong>Toranomon Hills Yokocho</strong> downstairs is a curated indoor food alley with 26 chef-driven counters: yakitori, oden, ramen, kushikatsu, gyoza. Easy, low-friction, and they can crash by 10pm.
-          <br><br>
-          <em>Alternative if energy permits:</em> <strong>Gyukatsu Katsugyu</strong> on Shibuya Dogenzaka (30-min taxi from Toyosu). Breaded beef cutlet sliced rare, you finish cooking each piece on a small hot stone — crispy outside, ruby inside. No reservations, 15–30 min wait. Worth the detour but only if not exhausted.
+        <div class="pick">
+          <div class="pick-name"><a href="https://gyukatsu-katsugyu.com/shop/shibuya-dogenzaka.html" target="_blank" rel="noopener">Gyukatsu Katsugyu</a></div>
+          <div class="pick-meta">Beef cutlet · Shibuya Dogenzaka · 15-min taxi from Toyosu</div>
+          <p class="pick-body">Breaded beef cutlet, sliced rare, finish each piece on a hot stone at the table. No reservations, 15–30 min wait. Skip if exhausted after teamLab.</p>
         </div>
       </div>
     </div>
@@ -1006,40 +1051,41 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Seimon_Ishibashi.JPG/330px-Seimon_Ishibashi.JPG" alt="Imperial Palace bridge">
-        <div class="timeblock-title">Imperial Palace East Gardens</div>
-        <div class="timeblock-body">
-          The grounds of the former Edo Castle, free entry, mostly flat paths through stone walls and Japanese gardens. About 90 minutes is plenty. Beautiful azalea blooms in mid-May. <strong>Aim to wrap by 11:30 am</strong> so there's time for lunch and getting to the sumo meet-up.
+      <h3 class="picks-header">Activities · sumo anchors the day</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Sumo Tournament — guided tour at 13:00</div>
+          <div class="pick-meta">Booked · Ryōgoku Kokugikan · 13:00–18:00 · B seating</div>
+          <p class="pick-body">Meet Klook guide at the Kokugikan entrance. Lower divisions early, entrance ceremony ~3pm, top-division (makuuchi) bouts 3:30–6 pm. Box seats = tatami boxes near the floor (shoes off, shared with another pair). Snacks/drinks allowed.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Imperial Palace East Gardens</div>
+          <div class="pick-meta">Marunouchi · 90 min · free · before sumo</div>
+          <p class="pick-body">Former Edo Castle grounds, flat paths through stone walls and Japanese gardens. Azalea blooms in mid-May. Wrap by 11:30 to leave time for Tsukiji lunch + Ryōgoku transit.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Sumō Museum</div>
+          <div class="pick-meta">Free · next to Kokugikan</div>
+          <p class="pick-body">Inside the Kokugikan complex — exhibits on legendary wrestlers, kesho-mawashi ceremonial aprons, tournament history. Quick 30-min stop before/after the bouts.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/2018_Tsukiji_fish_market.jpg/330px-2018_Tsukiji_fish_market.jpg" alt="Tsukiji Outer Market">
-        <div class="timeblock-title"><a href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener">Tsukiji Outer Market</a> food crawl <span class="pill gold">Highlight</span></div>
-        <div class="timeblock-body">
-          Inner market moved to Toyosu, but the <strong>outer market is still a wonderland</strong> — tamago (sweet egg) on a stick, wagyu skewers, A5 beef croquettes, dashimaki tamago, melon-pan, fresh strawberries, oysters if they want them. Graze through 6–8 stalls. <strong>Eat by 12:15</strong>, then taxi to Ryōgoku (20 min) for the sumo meet-up.
+      <h3 class="picks-header">Food &amp; drinks · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener">Tsukiji Outer Market</a> food crawl</div>
+          <div class="pick-meta">Lunch · 5-min taxi from Imperial Palace · 20-min taxi to Ryōgoku</div>
+          <p class="pick-body">Tamago on a stick, wagyu skewers, A5 beef croquettes, dashimaki tamago, melon-pan, fresh strawberries. Graze 6–8 stalls. <strong>Eat by 12:15</strong> to make the sumo meet-up.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">13:00 — 18:00</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Asashoryu_fight_Jan08.JPG/330px-Asashoryu_fight_Jan08.JPG" alt="Sumo wrestlers">
-        <div class="timeblock-title">Grand Sumo Tournament — guided tour <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          <strong>Meet the Klook guide at 13:00</strong> at the Ryōgoku Kokugikan entrance. The guide explains the rules and ritual, then you watch the lower divisions, the entrance ceremony around 3 pm, and the top-division (makuuchi) bouts from 3:30–6 pm in your reserved <strong>Box B seats</strong>. Bring the e-voucher (<a href="https://www.klook.com/voucher-new/f77e681c-fcd6-4afa-49aa-da8e64d54b93?lang=en_US&amp;from_source=email&amp;from_medium=system_email&amp;from_campaign=TTD_pretrip2_booking_confirmation_base" target="_blank" rel="noopener">link</a>).
-          <br><br>
-          Box seats are 4-person tatami boxes near the floor — shoes off, shared with another pair. Snacks and drinks allowed inside the arena. Final ceremony around 6 pm.
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.tomoegata.com/" target="_blank" rel="noopener">Chanko Tomoegata</a></div>
+          <div class="pick-meta">Sumo hot pot · walks from Kokugikan · dinner</div>
+          <p class="pick-body">The traditional one-pot stew sumo wrestlers eat to bulk up. Run by a former wrestler. Healthy, delicious, and the perfect dinner after the bouts.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dinner</div>
-        <div class="timeblock-title">Chanko nabe in Ryōgoku</div>
-        <div class="timeblock-body">
-          The traditional one-pot stew sumo wrestlers eat to bulk up — surprisingly delicious and healthy. <strong>Chanko Tomoegata</strong> (run by a former wrestler) is the classic move. Walking distance from the arena. After dinner, taxi back to the EDITION (~25 min).
+        <div class="pick">
+          <div class="pick-name"><a href="https://barhighfive.com/" target="_blank" rel="noopener">Bar High Five</a> nightcap</div>
+          <div class="pick-meta">Cocktails · Ginza · 15-min taxi from EDITION</div>
+          <p class="pick-body">Tokyo's most awarded cocktail bar. A quiet whisky to close out a sumo-and-Tsukiji day. Walk-in friendly with reservation.</p>
         </div>
       </div>
     </div>
@@ -1068,65 +1114,57 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">8:00–9:00am</div>
-        <div class="timeblock-title">Pack &amp; Yamato baggage forwarding to Mitsui Kyoto <span class="pill gold">Smart move</span></div>
-        <div class="timeblock-body">
-          At the EDITION, ship suitcases ahead via <strong>Yamato Transport</strong> (the concierge can arrange) — bags arrive at Mitsui Kyoto by evening. Travel light with just a day pack + change of clothes. Spares the boat experience from luggage juggling. ~¥2,500/bag, totally worth it.
+      <div class="callout">
+        <div class="callout-title">Travel Day Logistics</div>
+        <p style="margin:0; font-size:.92rem;">
+          <strong>Yamato baggage forward</strong> from EDITION concierge in the morning (bags arrive Mitsui by evening, ~¥2,500/bag) ·
+          <strong>8:30 or 9 am Nozomi</strong> Tokyo → Kyoto, Green Car (book Smart-EX) ·
+          arrive Kyoto ~11 am · light lunch + drop day bags at Mitsui ·
+          <strong>14:00 JR Sanin Line</strong> Kyoto Station → Kameoka (22 min) · walk 10 min to boat dock by 14:45 ·
+          <strong>15:00 boat (booked)</strong> · arrive Arashiyama ~17:00 · JR Sagano back to Kyoto + taxi to Mitsui.
+        </p>
+      </div>
+
+      <h3 class="picks-header">Activities · the boat anchors the day</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.hozugawakudari.jp/en" target="_blank" rel="noopener">Hozugawa River Boat Ride</a></div>
+          <div class="pick-meta">Booked · 15:00–17:00 · departs Kameoka, ends Arashiyama</div>
+          <p class="pick-body">Traditional wooden boat, three boatmen poling through the river gorge — small rapids, calm pools, forested mountains. Bring a light layer (river breeze cool even in May) and water. Snacks allowed.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.hotelthemitsui.com/en/kyoto/thermal_springs-spa/thermal-spring/" target="_blank" rel="noopener">Mitsui Thermal Spring spa</a></div>
+          <div class="pick-meta">At the hotel · post-boat soak · ~30–60 min</div>
+          <p class="pick-body">Natural onsen drawn from 1,000m below ground, swimsuit-required communal pool. The perfect post-boat unwind before dinner.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.kyoto-nishiki.or.jp/en/" target="_blank" rel="noopener">Nishiki Market</a> evening crawl</div>
+          <div class="pick-meta">15-min walk from Mitsui · open till 6 pm</div>
+          <p class="pick-body">If you arrive back early enough — graze 5 blocks of stalls (yuba tofu, soy donuts, dashimaki tamago, wagyu skewers). Skip if you'd rather rest.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">8:30am</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bento_box_from_a_grocery_store.jpg/330px-Bento_box_from_a_grocery_store.jpg" alt="Bento box">
-        <div class="timeblock-title">Shinkansen Tokyo → Kyoto · Green Car <span class="pill gold">First Class</span></div>
-        <div class="timeblock-body">
-          Aim for an <strong>8:30 or 9:00 am Nozomi</strong> from Tokyo Station — 2 hr 14 min to Kyoto. Earlier train = comfortable lunch + buffer time before the 3 pm boat. Book <strong>Green Car</strong> seats, row 11 or 12 on the right side (E seat) for the best Mt. Fuji view ~45 min in. Pick up an ekiben at <strong>Tokyo Station Daimaru basement</strong> before boarding.
-          <br><br>
-          <strong>Book via:</strong> Smart-EX app, instant QR boarding.
+      <h3 class="picks-header">Food &amp; drinks · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">Ekiben on the Shinkansen</div>
+          <div class="pick-meta">Tokyo Station Daimaru basement · grab before boarding</div>
+          <p class="pick-body">Bento boxes from the Daimaru basement are a Shinkansen tradition. Pick one up before boarding for an in-seat lunch with Mt. Fuji views.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">11:00am–13:30</div>
-        <div class="timeblock-title">Arrive Kyoto · proper lunch · drop bags <span class="pill">Time for it now</span></div>
-        <div class="timeblock-body">
-          Arrive Kyoto Station ~10:45–11:15 am. Taxi to <strong>Mitsui Kyoto</strong> (~15 min), drop day bags at the hotel (Yamato is shipping the suitcases anyway, so this is light), eat lunch nearby. Try <strong>Yukichi Honpo</strong> (Kyoto ramen, 10 min from the hotel) or any of the Mitsui's quick options. Then head out by 13:30.
+        <div class="pick">
+          <div class="pick-name"><a href="https://tabelog.com/en/kyoto/A2601/A260201/26041899/" target="_blank" rel="noopener">Yukichi Honpo</a></div>
+          <div class="pick-meta">Kyoto ramen · 10-min walk from Mitsui · light lunch</div>
+          <p class="pick-body">Refined Kyoto-style chicken-broth ramen — clear, bright, lighter than Tokyo tonkotsu. Quick lunch between arrival and the boat.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">14:00</div>
-        <div class="timeblock-title">Train Kyoto Station → Kameoka <span class="pill">JR Sanin Line</span></div>
-        <div class="timeblock-body">
-          Direct ride, ~22 minutes. Local trains run every 15 min. Arrive Kameoka ~14:30. Walk 10 min to the boat dock — signs in English. Be at the dock by <strong>14:45 latest</strong> for the 15:00 boat.
+        <div class="pick must">
+          <div class="pick-name"><a href="https://tabelog.com/en/kyoto/A2601/A260201/26000646/" target="_blank" rel="noopener">Mishima-tei Pontocho</a></div>
+          <div class="pick-meta">Sukiyaki · Pontocho · dinner · reservation needed</div>
+          <p class="pick-body">Legendary 150-year-old Kyoto sukiyaki — premium beef cooked tableside in cast iron, dipped in raw egg. May is <strong>yuka</strong> (riverside terrace) season — request one.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">15:00–17:00</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Jrballe_hozu_river_2007_001.JPG/330px-Jrballe_hozu_river_2007_001.JPG" alt="Hozu River boat">
-        <div class="timeblock-title"><a href="https://www.hozugawakudari.jp/en" target="_blank" rel="noopener">Hozugawa River Boat Ride</a> <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          Traditional wooden boat, three boatmen poling and steering through the river gorge — small rapids, calm pools, beautiful forested mountains. <strong>2 hours</strong> from Kameoka down to Arashiyama. Bring a light layer (river breeze cool even in May) and water. Snacks allowed.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">17:00–18:30</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Onsen_in_Nachikatsuura%2C_Japan.jpg/330px-Onsen_in_Nachikatsuura%2C_Japan.jpg" alt="Onsen">
-        <div class="timeblock-title">Train back to Mitsui · check in &amp; thermal spring</div>
-        <div class="timeblock-body">
-          From Arashiyama, JR Sagano Line back to Kyoto Station (15 min), taxi to <strong>HOTEL THE MITSUI KYOTO</strong> (~15 min). Bags should be waiting at the room courtesy of Yamato. Quick freshen-up, then head to the <strong>Thermal Spring spa</strong> in the basement — natural onsen drawn from 1,000m below, swimsuit-required pool. The perfect post-boat soak.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening (7:30pm)</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg/330px-Pontocho_by_Wolfiewolf_in_Nabeyacho%2C_Kyoto.jpg" alt="Pontocho lantern alley">
-        <div class="timeblock-title">Pontocho Alley dinner — Mishima-tei sukiyaki</div>
-        <div class="timeblock-body">
-          The lantern-lit alley along the Kamo River — Kyoto at its most cinematic. <strong><a href="https://tabelog.com/en/kyoto/A2601/A260201/26000646/" target="_blank" rel="noopener">Mishima-tei Pontocho</a></strong> is the legendary 150-year-old sukiyaki house — premium beef cooked tableside in cast iron, dipped in raw egg. Reservation needed. May is <strong>yuka</strong> (riverside terrace) season — request one.
+        <div class="pick">
+          <div class="pick-name"><a href="https://tabelog.com/en/kyoto/A2601/A260201/26040237/" target="_blank" rel="noopener">Kyoto Tonkatsu Katsuda</a></div>
+          <div class="pick-meta">Tonkatsu · Pontocho · walk-in friendly · alt to Mishima-tei</div>
+          <p class="pick-body">Crispy Kyoto-style breaded pork cutlet. Easier reservation than Mishima-tei, casual but excellent.</p>
         </div>
       </div>
     </div>
@@ -1156,80 +1194,60 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <div class="timeblock-title"><a href="https://www.teamlab.art/e/kyoto/" target="_blank" rel="noopener">teamLab Biovortex Kyoto</a> · flexible pass <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          Taxi from Mitsui (~15 min) to Kyoto Station Hachijo East gate. The new flagship teamLab — opened October 2025, 10,000 sqm, 50+ environmental-art installations spread across the largest teamLab museum in Japan. Allow <strong>2 hours</strong> inside (~10am–12pm). With the flex pass, no entry-time stress.
+      <h3 class="picks-header">Activities · teamLab anchors, Kyoto unfolds</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.teamlab.art/e/kyoto/" target="_blank" rel="noopener">teamLab Biovortex Kyoto</a></div>
+          <div class="pick-meta">Booked · flex pass anytime · 7-min walk Kyoto Station Hachijo East · 2 hrs inside</div>
+          <p class="pick-body">The new flagship teamLab (opened Oct 2025, 10,000 sqm, 50+ environmental-art installations). Largest teamLab in Japan. Best in the morning when fresh.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.shokoku-ji.jp/en/kinkakuji/" target="_blank" rel="noopener">Kinkaku-ji (Golden Pavilion)</a></div>
+          <div class="pick-meta">NW Kyoto · 45 min · ¥500 · 25-min taxi from central</div>
+          <p class="pick-body">The actual gold-leafed temple reflecting on its mirror pond. Quick visit, big visual payoff. Pair with teamLab in one half-day for the two photogenic Kyoto landmarks.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.kiyomizudera.or.jp/en/" target="_blank" rel="noopener">Higashiyama walk</a></div>
+          <div class="pick-meta">SE Kyoto · 2–3 hrs · all walkable in sequence</div>
+          <p class="pick-body"><strong>Kiyomizu-dera</strong> (UNESCO, ¥400) → walk down <strong>Sannenzaka + Ninenzaka</strong> (preserved stone streets, old wooden shops) → past <strong>Yasaka Pagoda</strong> → into <strong>Gion</strong>. The single most cinematic Kyoto walk — all sequential, no transit between.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.princehotels.com/seiryu-kiyomizu/restaurant/k36-the-bar-rooftoppartner-restaurant/" target="_blank" rel="noopener">K36 Rooftop bar</a> at sunset</div>
+          <div class="pick-meta">Higashiyama · directly across from Yasaka Pagoda</div>
+          <p class="pick-body">Best sunset cocktail spot in Kyoto. Old roofs and the pagoda lit up below. Slot in after the Higashiyama walk before dinner.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Gion stroll at dusk</div>
+          <div class="pick-meta">Continues from Higashiyama walk · free</div>
+          <p class="pick-body">Around 6 pm you may spot real geiko/maiko commuting to evening engagements. Most photogenic Kyoto streets at lantern-light hour.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kakeudon.jpg/330px-Kakeudon.jpg" alt="Udon">
-        <div class="timeblock-title">Yamamoto Menzou (udon) or Yukichi Honpo (Kyoto ramen)</div>
-        <div class="timeblock-body">
-          Back into central Kyoto. Two solid lunch picks:
-          <ul class="clean" style="margin-top:8px;">
-            <li><a href="https://tabelog.com/en/kyoto/A2601/A260301/26002504/" target="_blank" rel="noopener"><strong>Yamamoto Menzou</strong></a> — Grant's pick, handmade Kyoto udon, refined</li>
-            <li><a href="https://tabelog.com/en/kyoto/A2601/A260201/26041899/" target="_blank" rel="noopener"><strong>Yukichi Honpo</strong></a> — Kyoto-style chicken-broth ramen, 10 min from the hotel</li>
-          </ul>
+      <h3 class="picks-header">Food &amp; drinks · pick what fits</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name"><a href="https://tabelog.com/en/kyoto/A2601/A260301/26002504/" target="_blank" rel="noopener">Yamamoto Menzou</a></div>
+          <div class="pick-meta">Udon · central Kyoto · lunch · no fish</div>
+          <p class="pick-body">Handmade Kyoto udon, refined. Grant's pick. Walking distance from Mitsui.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Early Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/330px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg" alt="Kinkaku-ji Golden Pavilion">
-        <div class="timeblock-title"><a href="https://www.shokoku-ji.jp/en/kinkakuji/" target="_blank" rel="noopener">Kinkaku-ji (Golden Pavilion)</a> <span class="pill gold">Wanderlog must</span></div>
-        <div class="timeblock-body">
-          Taxi to NW Kyoto (~25 min). The actual gold-leafed temple reflecting on its mirror pond. 45 minutes inside is plenty. ¥500. The morning teamLab + Kinkaku-ji combination puts the two photogenic Kyoto highlights in one half-day before tackling Higashiyama.
+        <div class="pick">
+          <div class="pick-name">Sannenzaka dessert crawl</div>
+          <div class="pick-meta">Higashiyama · pick 2–3 · sequential walk down Sannenzaka</div>
+          <p class="pick-body">All on the same stone-paved walk:
+          <a href="https://tabelog.com/en/kyoto/A2601/A260301/26030960/" target="_blank" rel="noopener">Maccha House</a> (matcha soft serve),
+          <a href="https://tabelog.com/en/kyoto/A2601/A260201/26039149/" target="_blank" rel="noopener">Totaro</a> (warabimochi),
+          <a href="https://tabelog.com/en/kyoto/A2601/A260202/26038624/" target="_blank" rel="noopener">Rokujuan</a> (jelly desserts),
+          <a href="https://tabelog.com/en/kyoto/A2601/A260301/26037328/" target="_blank" rel="noopener">KUMONOCHA</a> (cloud lattes).</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Mid Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/330px-Kiyomizu.jpg" alt="Kiyomizu-dera Temple">
-        <div class="timeblock-title">Higashiyama walk: <a href="https://www.kiyomizudera.or.jp/en/" target="_blank" rel="noopener">Kiyomizu-dera</a> → Sannenzaka → <a href="https://kyoto.travel/en/destinations/hokanji-templeyasaka-pagoda/" target="_blank" rel="noopener">Yasaka Pagoda</a></div>
-        <div class="timeblock-body">
-          Taxi from Kinkaku-ji to Kiyomizu-zaka (~25 min). Start at <strong>Kiyomizu-dera</strong> (UNESCO temple on a wooden stage above the city, ¥400), then descend the preserved stone streets of <strong>Sannenzaka</strong> and <strong>Ninenzaka</strong>, lined with old wooden shops. Pass the iconic <strong>Yasaka Pagoda</strong> framed by old Kyoto roofs. Continue into <strong>Gion</strong>, the preserved geisha district.
+        <div class="pick must">
+          <div class="pick-name"><a href="https://tabelog.com/en/kyoto/A2601/A260301/26002441/" target="_blank" rel="noopener">Gion Karyo</a></div>
+          <div class="pick-meta">Kaiseki · in Gion machiya · dinner · reservation</div>
+          <p class="pick-body">Beautiful preserved machiya, multi-course kyo-ryori. Walks naturally from K36/Yasaka. Reserve 1–2 weeks ahead.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dessert Crawl</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Matcha_Scoop.jpg/330px-Matcha_Scoop.jpg" alt="Matcha sweets">
-        <div class="timeblock-title">Sannenzaka sweets stops <span class="pill">Wanderlog favorites</span></div>
-        <div class="timeblock-body">
-          Pace yourselves — pick 2–3 of these as you walk down Sannenzaka:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong><a href="https://tabelog.com/en/kyoto/A2601/A260301/26030960/" target="_blank" rel="noopener">Maccha House</a></strong> — matcha soft serve and parfait</li>
-            <li><strong><a href="https://tabelog.com/en/kyoto/A2601/A260201/26039149/" target="_blank" rel="noopener">Totaro</a></strong> — warabimochi (jelly mochi) + matcha</li>
-            <li><strong><a href="https://tabelog.com/en/kyoto/A2601/A260202/26038624/" target="_blank" rel="noopener">Rokujuan</a></strong> — translucent jelly desserts</li>
-            <li><strong><a href="https://tabelog.com/en/kyoto/A2601/A260301/26037328/" target="_blank" rel="noopener">KUMONOCHA</a></strong> — cloud-shaped lattes</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Sunset</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg/330px-Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg" alt="Yasaka Pagoda from Yasaka-dori">
-        <div class="timeblock-title"><a href="https://www.princehotels.com/seiryu-kiyomizu/restaurant/k36-the-bar-rooftoppartner-restaurant/" target="_blank" rel="noopener">K36 Rooftop bar</a> sunset · Gion stroll <span class="pill gold">Wanderlog favorite</span></div>
-        <div class="timeblock-body">
-          <strong>K36 The Bar &amp; Rooftop</strong> sits directly across from Yasaka Pagoda — Grant rated it one of the best sunset cocktail spots in Kyoto. Old roofs and the pagoda lit up below. Then continue into Gion (around 6 pm you may spot real geiko/maiko commuting to evening engagements).
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dinner</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sukiyaki_01.jpg/330px-Sukiyaki_01.jpg" alt="Sukiyaki">
-        <div class="timeblock-title">Mishima-tei sukiyaki or Gion Karyo kaiseki</div>
-        <div class="timeblock-body">
-          Two great options for the Gion area dinner:
-          <ul class="clean" style="margin-top:8px;">
-            <li><a href="https://tabelog.com/en/kyoto/A2601/A260201/26000646/" target="_blank" rel="noopener"><strong>Mishima-tei</strong></a> — 150-year-old sukiyaki, premium beef tableside, no fish</li>
-            <li><a href="https://tabelog.com/en/kyoto/A2601/A260301/26002441/" target="_blank" rel="noopener"><strong>Gion Karyo</strong></a> — kyo-ryori kaiseki in a preserved machiya</li>
-          </ul>
-          Both need reservations 1–2 weeks ahead.
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.hotelthemitsui.com/en/kyoto/restaurants-bar/toki/" target="_blank" rel="noopener">Toki at Mitsui</a></div>
+          <div class="pick-meta">Kyoto-French kaiseki · at the hotel · dinner</div>
+          <p class="pick-body">Chef Asano's "Kyoto French" — easiest top-tier kaiseki since you're staying upstairs. Good if you'd rather dinner near the hotel.</p>
         </div>
       </div>
     </div>
@@ -1259,78 +1277,50 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Early Morning</div>
-        <div class="timeblock-title">Mitsui breakfast · Yamato luggage forwarding <span class="pill gold">Smart move</span></div>
-        <div class="timeblock-body">
-          Morning breakfast at the Mitsui. Before the tour pickup, drop suitcases at the <strong>JR Central Kyoto Station "Hands Free Travel" / Yamato Carry Service kiosk</strong> at the Hachijo East gate — bags ship to Hakone Gora KARAKU for next-day delivery. Travel light through the rest of the day.
+      <div class="callout">
+        <div class="callout-title">Day-Tour Day · the tour does the heavy lifting</div>
+        <p style="margin:0; font-size:.92rem;">
+          <strong>Before pickup:</strong> Mitsui breakfast → drop suitcases at <strong>Yamato Hands Free Travel</strong> kiosk at Kyoto Station Hachijo East gate (ships to Gora KARAKU next day) ·
+          <strong>All day:</strong> Tour visits Arashiyama bamboo, Fushimi Inari torii, Nara Park &amp; Tōdai-ji · English/Chinese guide · 3+ km walking total ·
+          <strong>Confirm with operator</strong> the day before: pickup time, lunch arrangements, drop-off location.
+        </p>
+      </div>
+
+      <h3 class="picks-header">Activities · the tour covers the big three</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Arashiyama Bamboo Grove + Tenryū-ji</div>
+          <div class="pick-meta">Tour stop · NW Kyoto · ~90 min</div>
+          <p class="pick-body">Famous bamboo grove walk and likely a stop at Tenryū-ji or Togetsukyo Bridge. The bamboo and the Zen pond are right next to each other.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://inari.jp/en/" target="_blank" rel="noopener">Fushimi Inari Taisha</a></div>
+          <div class="pick-meta">Tour stop · S Kyoto · ~60–90 min</div>
+          <p class="pick-body">The famous tunnel of 10,000 vermillion torii gates climbing the mountain. Tour will likely take you partway up — you can climb further if energy.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.todaiji.or.jp/en/" target="_blank" rel="noopener">Tōdai-ji</a> &amp; <a href="https://en.wikipedia.org/wiki/Nara_Park" target="_blank" rel="noopener">Nara Park</a></div>
+          <div class="pick-meta">Tour stop · Nara · ~2 hrs</div>
+          <p class="pick-body">Tōdai-ji + Nara Park are right next to each other — bowing deer roam free, and the world's largest wooden building houses a 15m bronze Buddha. Buy "shika senbei" deer crackers (¥200) — they bow politely for them.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">All Day</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Nara_Park_-_panoramio_%282%29.jpg/330px-Nara_Park_-_panoramio_%282%29.jpg" alt="Nara Park">
-        <div class="timeblock-title">Day Tour: Arashiyama → Fushimi Inari → Nara <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          The booked tour covers the three biggest Kyoto-area highlights in one bus day with an English-speaking guide. Typical route:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Arashiyama</strong> — bamboo grove walk, Tenryū-ji or Togetsukyo Bridge</li>
-            <li><a href="https://inari.jp/en/" target="_blank" rel="noopener"><strong>Fushimi Inari Taisha</strong></a> — the famous tunnel of 10,000 vermillion torii gates climbing the mountain</li>
-            <li><a href="https://www.todaiji.or.jp/en/" target="_blank" rel="noopener"><strong>Tōdai-ji</strong></a> &amp; <a href="https://en.wikipedia.org/wiki/Nara_Park" target="_blank" rel="noopener"><strong>Nara Park</strong></a> — bowing deer, 15m bronze Great Buddha</li>
-          </ul>
-          Confirm exact pickup time, lunch arrangements, and drop-off location (Kyoto vs Osaka) with the tour operator the day before. <strong>Wear comfortable walking shoes</strong> — easily 3+ km of walking across the day.
+      <h3 class="picks-header">Food &amp; drinks · keep it easy</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">Tour-included lunch</div>
+          <div class="pick-meta">Confirm with operator · usually mid-day stop</div>
+          <p class="pick-body">Most Klook tours include or coordinate a lunch stop. Confirm with the operator the day before to know what's covered.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Afternoon</div>
-        <div class="timeblock-title">Drop-off in Kyoto · pack &amp; rest</div>
-        <div class="timeblock-body">
-          Tour ends in Kyoto (request Kyoto drop-off) around 5–6 pm. Pick up any remaining items at Mitsui, freshen up, light dinner. Early night since tomorrow has the Hakone transfer.
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.tablecheck.com/en/menbaka" target="_blank" rel="noopener">Menbaka Fire Ramen</a></div>
+          <div class="pick-meta">Spectacle ramen · central Kyoto · dinner</div>
+          <p class="pick-body">Flame-show ramen — chef pours flaming hot scallion oil into your bowl tableside. Fun if you have energy after the tour. Walk-in friendly.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dinner</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Shoyu_ramen%2C_at_Kasukabe_Station_%282014.05.05%29_1.jpg/330px-Shoyu_ramen%2C_at_Kasukabe_Station_%282014.05.05%29_1.jpg" alt="Ramen">
-        <div class="timeblock-title">Easy dinner near the hotel</div>
-        <div class="timeblock-body">
-          After a full guided day, keep dinner low-key. <strong>Menbaka Fire Ramen</strong> (the flame-show ramen, if not too tired) or simpler ramen at <strong>Yukichi Honpo</strong>, or hotel room service. Save energy for the Hakone transfer day.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/330px-Kiyomizu.jpg" alt="Kiyomizu-dera Temple">
-        <div class="timeblock-title">Higashiyama walk: Kiyomizu-dera → Sannenzaka → Hōkan-ji Pagoda <span class="pill">From Wanderlog</span></div>
-        <div class="timeblock-body">
-          Taxi to Kiyomizu-zaka. Start at <a href="https://www.kiyomizudera.or.jp/en/" target="_blank" rel="noopener"><strong>Kiyomizu-dera</strong></a> (UNESCO temple on a wooden stage above the city, ¥400), then descend the preserved stone streets of <strong>Sannenzaka</strong> and <strong>Ninenzaka</strong>, lined with old wooden shops. Pass <a href="https://en.wikipedia.org/wiki/Yasaka_Pagoda" target="_blank" rel="noopener"><strong>Hōkan-ji Temple (Yasaka Pagoda)</strong></a> — the iconic five-story wooden pagoda framed by old Kyoto roofs.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Dessert Crawl</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Matcha_Scoop.jpg/330px-Matcha_Scoop.jpg" alt="Matcha sweets">
-        <div class="timeblock-title">Sannenzaka sweets stops <span class="pill">Wanderlog favorites</span></div>
-        <div class="timeblock-body">
-          Pace yourselves — pick 2–3 of these as you walk down Sannenzaka:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Maccha House</strong> — matcha soft serve and parfait, the icon of Kyoto desserts</li>
-            <li><strong>Totaro</strong> — warabimochi (jelly mochi) and matcha</li>
-            <li><strong>Rokujuan</strong> — translucent jelly desserts that look like falling water</li>
-            <li><strong>KUMONOCHA Kiyomizu Sannenzaka</strong> — cool cloud-shaped lattes</li>
-            <li><strong>(THISIS)SHIZEN</strong> — modern plant-based desserts</li>
-            <li><strong>RAU Patisserie &amp; Chocolate</strong> — chef-driven contemporary patisserie</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg/330px-Yasaka-dori_early_morning_with_street_lanterns_and_the_Tower_of_Yasaka_%28Hokan-ji_Temple%29%2C_Kyoto%2C_Japan.jpg" alt="Yasaka Pagoda from Yasaka-dori">
-        <div class="timeblock-title">K36 Rooftop sunset · Gion dinner <span class="pill gold">Wanderlog favorite</span></div>
-        <div class="timeblock-body">
-          <strong>K36 The Bar &amp; Rooftop</strong> sits directly across from Yasaka Pagoda — Grant rated it one of the best sunset cocktail spots in Kyoto. Old roofs and the pagoda lit up below. Then continue into <strong>Gion</strong>, Kyoto's preserved geisha district — around 6 pm you may spot real geiko/maiko commuting to evening engagements. Dinner at <strong>Mishima-tei</strong> (legendary Kyoto sukiyaki, in business since 1873) or okonomiyaki at <strong>Issen Yoshoku</strong> for something casual — both fish-free.
+        <div class="pick">
+          <div class="pick-name">Easy dinner near hotel</div>
+          <div class="pick-meta">Mitsui room service or Yukichi Honpo · low-effort</div>
+          <p class="pick-body">After a full guided day, keep dinner low-key. Hotel room service or simple ramen at <strong>Yukichi Honpo</strong>. Save energy for the early Hakone transfer tomorrow.</p>
         </div>
       </div>
     </div>
@@ -1364,73 +1354,52 @@
         <p style="margin:0; font-size:.92rem;">The 10:20 Shinjuku Romancecar requires a <strong>very early Shinkansen</strong> from Kyoto (around 6:30 am). Bags arrive separately at Gora KARAKU via Yamato (forwarded May 15) — travel light with day packs only. Skip Nijō Castle and any other Kyoto morning activities — there's no time.</p>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">5:30 am</div>
-        <div class="timeblock-title">Wake, quick coffee, taxi to Kyoto Station</div>
-        <div class="timeblock-body">
-          Pre-arrange a 6:00 am taxi via the Mitsui concierge the night before. Light breakfast at the hotel (or grab coffee + pastry at the station). Bags should already be at Yamato — only day packs.
+      <div class="callout">
+        <div class="callout-title">Travel Day Logistics · the Romancecar anchors arrival</div>
+        <p style="margin:0; font-size:.92rem;">
+          <strong>5:30 am</strong> wake · <strong>6:00 am</strong> pre-arranged taxi to Kyoto Station ·
+          <strong>6:24–6:50 am</strong> Nozomi Shinkansen → Tokyo Station (~2hr 14m, right-side row 11–12 for Fuji views) ·
+          <strong>~9:00 am</strong> Yamanote Line Tokyo → Shinjuku (22 min) ·
+          <strong>10:20 Romancecar</strong> Shinjuku → Hakone-Yumoto (booked, 85 min) ·
+          <strong>~12:00</strong> Hakone Tozan railway up to Gora (40-min switchback ride) — Gora KARAKU is a 2-min walk from the station.
+        </p>
+      </div>
+
+      <h3 class="picks-header">At Gora KARAKU · check-in afternoon &amp; evening</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Private balcony onsen in your room</div>
+          <div class="pick-meta">Anytime · open-air · forest view</div>
+          <p class="pick-body">First thing after check-in: yukata robe, soak in the open-air bath on your balcony. Use whenever you want, day or night. The afternoon arrival soak is the best one.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Public open-air baths</div>
+          <div class="pick-meta">Included · separate men's/women's · mountain view</div>
+          <p class="pick-body">Beautifully designed common baths with mountain views. Different feel from the in-room bath — more spacious, fully open-air.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Private onsen room (reservation)</div>
+          <div class="pick-meta">¥5,000/hour · book at check-in</div>
+          <p class="pick-body">Three private onsens couples can use together. Book a slot at check-in for tomorrow or before dinner.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name">Spa massage booking</div>
+          <div class="pick-meta">Book on arrival for tomorrow · 60–90 min</div>
+          <p class="pick-body">Gora KARAKU offers in-room and spa-room massages. <strong>Ask front desk at check-in</strong> for a Day 8 slot — they fill up fast.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">6:30 am</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bento_box_from_a_grocery_store.jpg/330px-Bento_box_from_a_grocery_store.jpg" alt="Ekiben">
-        <div class="timeblock-title">Shinkansen Nozomi Kyoto → Tokyo Station <span class="pill">~2 hr 14 min</span></div>
-        <div class="timeblock-body">
-          Earliest Nozomi is around 6:24 am. Pick up an ekiben at Kyoto Station before boarding. <strong>Right side, row 11–12</strong> for Mt. Fuji views. Arrive Tokyo Station ~8:45 am.
-          <br><br>
-          <strong>Book via Smart-EX</strong> 1 month ahead — these early Shinkansen seats are popular.
+      <h3 class="picks-header">Food &amp; drinks</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">In-room kaiseki dinner</div>
+          <div class="pick-meta">Included with stay · 10+ courses · 6:30 or 7:00 pm</div>
+          <p class="pick-body">Multi-course traditional dinner served by the room attendant — appetizers, simmered dishes, Hakone mountain vegetables, hot pot, grilled wagyu, rice course, dessert. <strong>Request no-fish menu at booking</strong> (7+ days notice) — they substitute beef/chicken courses.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">8:45–9:30 am</div>
-        <div class="timeblock-title">Tokyo Station → Shinjuku · Yamanote Line</div>
-        <div class="timeblock-body">
-          Yamanote Line from Tokyo Station to Shinjuku, ~22 min. Or taxi (~30 min, ¥3,500). At Shinjuku, find the <strong>Odakyu Line Romancecar platform</strong> — well signed in English. Be at the platform by 10:00 am.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">10:20 am</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Model_3000_SE_of_Odakyu_Electric_Railway.JPG/330px-Model_3000_SE_of_Odakyu_Electric_Railway.JPG" alt="Romancecar limited express">
-        <div class="timeblock-title">Romancecar Shinjuku → Hakone-Yumoto <span class="pill gold">Booked</span></div>
-        <div class="timeblock-body">
-          The Odakyu <strong>Romancecar</strong> Limited Express. Reserved seating, panoramic windows, ~85 min direct to Hakone-Yumoto. Arrive ~11:45 am.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">11:45 am – 12:30 pm</div>
-        <div class="timeblock-title">Hakone-Yumoto → Gora · Hakone Tozan railway</div>
-        <div class="timeblock-body">
-          Transfer at Hakone-Yumoto to the <strong>Hakone Tozan railway</strong> — a scenic 40-min switchback ride climbing through forested mountains to Gora Station. Or taxi (~30 min). Gora KARAKU is a 2-min walk from the station.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon</div>
-        <img class="timeblock-thumb" src="https://gora-karaku.orixhotelsandresorts.com/uploads/2024/06/top_kv_01_pc.jpg" alt="Gora KARAKU ryokan">
-        <div class="timeblock-title">Check in Hakone Gora KARAKU <span class="pill gold">Onsen + spa moment</span></div>
-        <div class="timeblock-body">
-          Slip into the yukata robes provided in the room. The ryokan has <strong>three layers of onsen</strong> — pick whichever feels right:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Your room's private balcony onsen</strong> — open-air, looking into the Hakone forest. Use it whenever you want, day or night.</li>
-            <li><strong>The two public open-air baths</strong> (separate men's/women's) — beautifully designed with mountain views, included with the stay.</li>
-            <li><strong>Three private onsens by reservation</strong> — ¥5,000/hour, can be booked at check-in for a slot before dinner. Couples can use these together.</li>
-          </ul>
-          <strong>Book the spa massage</strong> at check-in for the next morning or late afternoon — Gora KARAKU offers in-room and spa-room treatments (typical 60–90 min Japanese-style relaxation massage). Reservations fill up fast, so ask the front desk first thing.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Jisaku_Kaiseki_Ryori_01.jpg/330px-Jisaku_Kaiseki_Ryori_01.jpg" alt="Kaiseki tray">
-        <div class="timeblock-title">Kaiseki dinner in-room <span class="pill">10+ courses</span></div>
-        <div class="timeblock-body">
-          Multi-course traditional dinner served by the room attendant — appetizers, simmered dishes, Hakone mountain vegetables, hot pot, grilled wagyu, rice course, dessert. A wonderful, slow ritual.
-          <br><br>
-          <strong>Important:</strong> contact the ryokan at booking to request a <em>no-fish kaiseki menu</em> — they will substitute beef/chicken/vegetable courses for the fish/seafood components. Most ryokans accommodate this with 7+ days notice. After dinner, one more onsen soak under the stars.
+        <div class="pick">
+          <div class="pick-name">Ekiben on the Shinkansen</div>
+          <div class="pick-meta">Kyoto Station before 6:24 am train</div>
+          <p class="pick-body">Coffee + ekiben to eat on the Shinkansen. The Daimaru basement at Kyoto Station has the best selection if open early; otherwise station kiosks.</p>
         </div>
       </div>
     </div>
@@ -1453,80 +1422,73 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Pre-breakfast</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Onsen_in_Nachikatsuura%2C_Japan.jpg/330px-Onsen_in_Nachikatsuura%2C_Japan.jpg" alt="Sunrise onsen">
-        <div class="timeblock-title">Sunrise private onsen <span class="pill gold">Don't skip</span></div>
-        <div class="timeblock-body">
-          Wake early. Long soak in your room's private balcony onsen as the morning fog rises off the Hakone forest. Western breakfast at the ryokan around 8.
+      <div class="callout">
+        <div class="callout-title">Suggested loop · Hakone Free Pass (¥6,100) covers it all</div>
+        <p style="margin:0; font-size:.92rem;">
+          A natural full circle: <strong>Open-Air Museum</strong> (Gora, walk-to) → cable car up to Sounzan → <strong>Ropeway over Owakudani</strong> → continue down to Togendai on Lake Ashi → lunch lakeside → <strong>Pirate Ship cruise</strong> across Lake Ashi → <strong>Hakone Shrine torii</strong> → bus back to Gora → <strong>walk through Gora Park</strong> to the ryokan. Bus, cable car, ropeway, cruise, all on the Free Pass.
+        </p>
+      </div>
+
+      <h3 class="picks-header">Activities · pick whatever fits, in any order</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Sunrise private onsen</div>
+          <div class="pick-meta">Don't skip · in-room balcony · pre-breakfast</div>
+          <p class="pick-body">Wake early. Long soak in your room's private balcony onsen as morning fog rises off the Hakone forest. Best onsen of the trip.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.hakone-oam.or.jp/en/" target="_blank" rel="noopener">Hakone Open-Air Museum</a></div>
+          <div class="pick-meta">Highlight · 5-min walk from ryokan · 2 hrs · ¥1,800</div>
+          <p class="pick-body">70,000 sqm of outdoor sculpture park — Henry Moore, Rodin, Miro, plus a dedicated <strong>Picasso Pavilion</strong> with 300+ works. Free hot-spring foot bath in the middle.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.hakoneropeway.co.jp/foreign/en/" target="_blank" rel="noopener">Hakone Ropeway</a> over <a href="https://en.wikipedia.org/wiki/%C5%8Cwakudani" target="_blank" rel="noopener">Owakudani</a></div>
+          <div class="pick-meta">Volcanic valley · Free Pass covers it · gondola views</div>
+          <p class="pick-body">Cable car from Gora up to Sounzan, then ropeway over the active volcanic valley. Sulfur steam vents, black rock, and on a clear day huge Mt. Fuji views from the gondola.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.hakone-kankosen.co.jp/foreign/en/" target="_blank" rel="noopener">Pirate Ship Lake Ashi cruise</a></div>
+          <div class="pick-meta">35 min · Togendai → Motohakone-ko · Free Pass</div>
+          <p class="pick-body">Continue the ropeway down to Togendai. Camp pirate-ship aesthetic, totally fun — 35-min cruise across Lake Ashi.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://hakonejinja.or.jp/" target="_blank" rel="noopener">Hakone Shrine torii</a></div>
+          <div class="pick-meta">Iconic photo · 10-min walk from Motohakone-ko</div>
+          <p class="pick-body">Famous floating red torii gate in Lake Ashi with Fuji potentially behind it. Photo line can be 30+ min — mid-afternoon sometimes calmer than mornings.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.hakonenavi.jp/gorapark/en/" target="_blank" rel="noopener">Hakone Gora Park walk</a></div>
+          <div class="pick-meta">5-min walk back to the ryokan · ¥550 (Free Pass)</div>
+          <p class="pick-body">Japan's first Western-style park — fountain, rose terraces, traditional teahouse, glass greenhouse. Walk through it on the way back from the bus stop. The ryokan is just at the top of the path.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Spa massage at Gora KARAKU</div>
+          <div class="pick-meta">Booked at check-in · 60–90 min · in-room or spa</div>
+          <p class="pick-body">If you booked yesterday — slot in the morning before the loop, or the late afternoon before kaiseki. The hour before dinner is the prime onsen + spa window.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.polamuseum.or.jp/en/" target="_blank" rel="noopener">Pola Museum of Art</a></div>
+          <div class="pick-meta">Optional · alternative to Open-Air · Sengoku</div>
+          <p class="pick-body">Excellent Impressionist collection in a forested glass building near Sengoku. A quieter half-day alternative if Open-Air feels too much.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Hakone5.jpg/330px-Hakone5.jpg" alt="Hakone Open-Air Museum">
-        <div class="timeblock-title"><a href="https://www.hakone-oam.or.jp/en/" target="_blank" rel="noopener">Hakone Open-Air Museum</a> <span class="pill gold">Highlight · 5-min walk</span></div>
-        <div class="timeblock-body">
-          Walk over from the ryokan — the museum is right next to Gora Station. 70,000 sqm of outdoor sculpture park with works by Henry Moore, Rodin, Miro — plus a dedicated <strong>Picasso Pavilion</strong> with 300+ works. There's also a free hot-spring foot bath in the middle of the park. About 2 hours. ¥1,800.
+      <h3 class="picks-header">Food &amp; drinks</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">La Terrazza Ashinoko</div>
+          <div class="pick-meta">Lakeside lunch · Togendai · pasta with a Lake Ashi view</div>
+          <p class="pick-body">Best lakeside lunch on the loop. Pairs naturally with the pirate-ship cruise (eat at Togendai before boarding).</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Owakudani_-_Hakone_%2827369344357%29.jpg/330px-Owakudani_-_Hakone_%2827369344357%29.jpg" alt="Owakudani volcanic valley">
-        <div class="timeblock-title">Hakone cable car up to <a href="https://www.hakoneropeway.co.jp/foreign/en/" target="_blank" rel="noopener">Ropeway</a> &amp; <a href="https://en.wikipedia.org/wiki/%C5%8Cwakudani" target="_blank" rel="noopener">Owakudani</a> <span class="pill">Volcanic valley</span></div>
-        <div class="timeblock-body">
-          From Gora Station take the historic cable car up to Sounzan, then transfer to the <strong>Hakone Ropeway</strong> over the active volcanic valley. Sulfur steam vents, black rock, and (on a clear day) huge Mt. Fuji views from the gondola. Get off at <strong>Owakudani Station</strong> and try the <strong>kuro-tamago</strong> (eggs hard-boiled in the sulfur springs — said to add 7 years to your life).
+        <div class="pick">
+          <div class="pick-name">Owakudani black eggs</div>
+          <div class="pick-meta">Snack · sulfur-boiled at Owakudani Station</div>
+          <p class="pick-body">Eggs hard-boiled in the sulfur springs — black shell, normal yolk. Said to add 7 years to your life. Buy a small pack on the ropeway stop.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch / Cruise</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/LakeAshi_and_MtFuji_Hakone.JPG/330px-LakeAshi_and_MtFuji_Hakone.JPG" alt="Lake Ashi">
-        <div class="timeblock-title"><a href="https://www.hakone-kankosen.co.jp/foreign/en/" target="_blank" rel="noopener">Hakone Sightseeing Cruise</a> (Pirate Ship) on Lake Ashi</div>
-        <div class="timeblock-body">
-          Continue the ropeway down to <strong>Togendai</strong> on Lake Ashi. Quick lunch at the lakeside (<strong>La Terrazza Ashinoko</strong> for pasta with a view, or grab onigiri). Then board the <strong>pirate ship</strong> — kind of camp, totally fun — 35-min cruise across the lake to Motohakone-ko. ¥1,200. <strong>All of this</strong> (cable car + ropeway + cruise + buses back) is included in the <strong>Hakone Free Pass</strong> (¥6,100, worth it).
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Mid Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Hakonejinja_-01.jpg/330px-Hakonejinja_-01.jpg" alt="Hakone Shrine torii">
-        <div class="timeblock-title"><a href="https://hakonejinja.or.jp/" target="_blank" rel="noopener">Hakone Shrine</a> torii on Lake Ashi <span class="pill gold">Iconic photo</span></div>
-        <div class="timeblock-body">
-          From Motohakone-ko walk 10 min to <strong>Hakone Shrine</strong> — the famous floating red torii gate in Lake Ashi with Fuji potentially behind it. Photo line in season can be 30+ min; mid-afternoon is sometimes calmer than mornings here.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Afternoon</div>
-        <img class="timeblock-thumb" src="https://gora-karaku.orixhotelsandresorts.com/uploads/2024/06/top_kv_03_pc.jpg" alt="Hakone Gora Park">
-        <div class="timeblock-title">Walk through <a href="https://www.hakonenavi.jp/gorapark/en/" target="_blank" rel="noopener">Hakone Gora Park</a> back to the ryokan <span class="pill gold">Don't skip</span></div>
-        <div class="timeblock-body">
-          Hakone Free Pass bus back to Gora Station (~30 min). From there, <strong>walk through Hakone Gora Park</strong> on your way to the ryokan — Japan's first Western-style park, with a fountain, rose terraces, traditional teahouse, and a glass greenhouse with tropical plants. The path winds gently uphill past the gardens, and the ryokan is just at the top. ¥550 entry (or covered by Hakone Free Pass — show your pass). About 45 minutes through the park, then 5-min walk to Gora KARAKU.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Pre-Dinner</div>
-        <div class="timeblock-title">Spa massage or private onsen reservation <span class="pill">Booked at check-in</span></div>
-        <div class="timeblock-body">
-          Whatever you booked yesterday — slot it in here before kaiseki. Either:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>60–90 min spa massage</strong> in your room or the spa</li>
-            <li><strong>Private onsen room</strong> for an hour (¥5,000) — different feel from your room's balcony bath</li>
-            <li>Or just an extended soak in the public open-air baths and the in-room onsen</li>
-          </ul>
-          The hour before dinner is the prime onsen window — you want the heat to settle before the meal.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Jisaku_Kaiseki_Ryori_01.jpg/330px-Jisaku_Kaiseki_Ryori_01.jpg" alt="Kaiseki dinner">
-        <div class="timeblock-title">Back to ryokan · second kaiseki</div>
-        <div class="timeblock-body">
-          Different menu tonight — the chef changes the kaiseki nightly so the second dinner is a fresh experience. One more long onsen and an early bedtime.
+        <div class="pick must">
+          <div class="pick-name">Second night kaiseki at Gora KARAKU</div>
+          <div class="pick-meta">In-room · different menu from night 1 · 6:30/7:00 pm</div>
+          <p class="pick-body">Chef changes the menu nightly so this is a fresh experience. One more long onsen and an early bedtime — tomorrow's transfer is easier than going in.</p>
         </div>
       </div>
     </div>
@@ -1548,69 +1510,66 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Onsen_in_Nachikatsuura%2C_Japan.jpg/330px-Onsen_in_Nachikatsuura%2C_Japan.jpg" alt="Onsen">
-        <div class="timeblock-title">Final onsen, leisurely breakfast</div>
-        <div class="timeblock-body">
-          The ryokan breakfast is itself an event — miso soup, pickles, silken tofu, dashimaki tamago, fresh egg over rice, mountain vegetables. Pack slowly. (Ask in advance for the no-fish version here too — they'll swap the grilled fish course.)
+      <div class="callout">
+        <div class="callout-title">Travel Day Logistics</div>
+        <p style="margin:0; font-size:.92rem;">
+          <strong>Slow morning:</strong> final onsen + ryokan breakfast (request no-fish if needed) ·
+          <strong>Late morning:</strong> Romancecar Hakone-Yumoto → Shinjuku (~85 min) — <strong>still needs to be booked separately</strong> at <a href="https://www.web-odakyu.com/e-romancecar/?language=en" target="_blank" rel="noopener">e-romancecar.jp</a>, target 10–11 am departure ·
+          drop bags at Shinjuku coin lockers OR have JW Marriott porter pickup ·
+          afternoon Shinjuku stops · taxi 25 min south to JW Marriott Takanawa for check-in.
+        </p>
+      </div>
+
+      <h3 class="picks-header">Activities · Shinjuku stops on the way + arrival</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">Tokyo Metropolitan Government Building</div>
+          <div class="pick-meta">Shinjuku · free observation deck · 45F · 30 min</div>
+          <p class="pick-body">Kenzo Tange's twin towers. Free 45F observation with Tokyo Tower / Mt. Fuji panoramas. Quick stop right at Shinjuku Station.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Don Quijote Shinjuku Kabukicho</div>
+          <div class="pick-meta">Shopping · 24-hour megastore · 5-min walk from Tokyo Metro Bldg</div>
+          <p class="pick-body">Chaotic discount megastore. Pick up matcha Kit-Kats, snacks, last-minute souvenirs. Adjacent to Kabukicho's nightlife district.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Kumachan Onsen</div>
+          <div class="pick-meta">Themed café · Shinjuku · cute photo stop · 30 min</div>
+          <p class="pick-body">Tiny themed café where a cute bear sits in a "hot tub" of your latte foam. Photogenic and silly in the best way.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Shinjuku Gyoen</div>
+          <div class="pick-meta">Optional · imperial garden · ¥500 · azalea blooms in May</div>
+          <p class="pick-body">Tokyo's most beautiful imperial garden. Skip if energy is fading; otherwise a calming half-hour walk.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Executive Lounge sunset</div>
+          <div class="pick-meta">JW Marriott · Bonvoy Platinum+ access · golden hour</div>
+          <p class="pick-body">Panoramic Tokyo skyline cocktail at golden hour. Best easy welcome to the new hotel.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Takanawa Gateway City stroll</div>
+          <div class="pick-meta">At the hotel's base · free · 30–45 min</div>
+          <p class="pick-body">The new development underneath the JW Marriott — restaurants, gardens, modern architecture. Pleasant pre-dinner walk.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Late Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Model_3000_SE_of_Odakyu_Electric_Railway.JPG/330px-Model_3000_SE_of_Odakyu_Electric_Railway.JPG" alt="Romancecar limited express">
-        <div class="timeblock-title">Romancecar Hakone-Yumoto → Shinjuku <span class="pill crimson">Book separately</span></div>
-        <div class="timeblock-body">
-          The Odakyu <strong>Romancecar</strong> Limited Express — reserved seating, panoramic windows, runs hourly. Most comfortable train ride into Tokyo. ~85 min direct. About ¥2,500 + base fare.
-          <br><br>
-          <strong>This is NOT yet booked</strong> — your May 16 Romancecar booking only covers the trip TO Hakone. Book the return at <a href="https://www.web-odakyu.com/e-romancecar/?language=en" target="_blank" rel="noopener">e-romancecar.jp</a>. Aim for a <strong>10 or 11 am departure</strong> from Hakone-Yumoto so you arrive Shinjuku by lunch.
+      <h3 class="picks-header">Food &amp; drinks · in-hotel signatures</h3>
+      <div class="picks-grid">
+        <div class="pick must">
+          <div class="pick-name">Kakō (JW Marriott)</div>
+          <div class="pick-meta">Washoku · in-hotel · dinner · reservation</div>
+          <p class="pick-body">Contemporary washoku with seasonal Japanese ingredients. Easy in-hotel dinner after the travel day.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon (Shinjuku stop)</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Tokyo_Metropolitan_Government_Building_2024.jpg/330px-Tokyo_Metropolitan_Government_Building_2024.jpg" alt="Tokyo Metropolitan Government Building">
-        <div class="timeblock-title">Shinjuku walking tour <span class="pill gold">All Wanderlog favorites</span></div>
-        <div class="timeblock-body">
-          Drop bags in a coin locker at Shinjuku Station (or have the JW Marriott concierge send a porter). Then a 3-hour Shinjuku afternoon hitting all of Grant's neighborhood favorites:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Tokyo Metropolitan Government Building</strong> — Kenzo Tange's twin towers, free observation deck on the 45th floor with one of the best Tokyo Tower / Mt. Fuji panoramas in the city. Daytime hits different than the evening crowd.</li>
-            <li><strong>Don Quijote Shinjuku Kabukicho</strong> — the chaotic 24-hour discount megastore. Better than the Shibuya MEGA branch for nightlife district vibes. Pick up matcha Kit-Kats, snacks, last-minute souvenirs.</li>
-            <li><strong>Kumachan Onsen</strong> — a tiny themed café where a cute bear sits in a "hot tub" of your latte foam. Photogenic and silly in the best way.</li>
-            <li>(Optional) <strong>Shinjuku Gyoen</strong> — Tokyo's most beautiful imperial garden if there's energy left, late azalea blooms in May. ¥500.</li>
-          </ul>
+        <div class="pick">
+          <div class="pick-name">Sefino (JW Marriott)</div>
+          <div class="pick-meta">Mediterranean · Michelin-starred chef Agustin Balbi · dinner</div>
+          <p class="pick-body">If they want a break from Japanese — Mediterranean by a Michelin-starred chef, in your hotel.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Afternoon</div>
-        <div class="timeblock-title">Taxi to JW Marriott Hotel Tokyo · check in</div>
-        <div class="timeblock-body">
-          Taxi from Shinjuku, 25 min south to Takanawa Gateway. Settle in to the new room — request a Corner Suite for the panoramic city view. Quick rest before dinner.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Sunset</div>
-        <div class="timeblock-title">Executive Lounge sunset views</div>
-        <div class="timeblock-body">
-          Head to the JW's <strong>Executive Lounge</strong> (Marriott Bonvoy Platinum/Titanium gets access; otherwise upgradeable) for a panoramic Tokyo skyline cocktail at golden hour. Or wander the new <strong>Takanawa Gateway City</strong> development at the hotel's base — restaurants, gardens, modern architecture.
-        </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Jisaku_Kaiseki_Ryori_01.jpg/330px-Jisaku_Kaiseki_Ryori_01.jpg" alt="Washoku">
-        <div class="timeblock-title">Dinner at Kakō or Sefino <span class="pill gold">In-hotel signatures</span></div>
-        <div class="timeblock-body">
-          Stay in for dinner — the JW Marriott's restaurants are destinations:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Kakō</strong> — contemporary washoku with seasonal Japanese ingredients</li>
-            <li><strong>Sefino</strong> — Mediterranean by Michelin-starred chef Agustin Balbi</li>
-            <li><strong>Saki</strong> — avant-garde kappo, intimate counter</li>
-          </ul>
-          Reservations recommended. Easy night after the travel day.
+        <div class="pick">
+          <div class="pick-name">Saki (JW Marriott)</div>
+          <div class="pick-meta">Avant-garde kappo · intimate counter · dinner</div>
+          <p class="pick-body">Counter-style avant-garde kappo. More adventurous Japanese option than Kakō.</p>
         </div>
       </div>
     </div>
@@ -1633,71 +1592,66 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Tokyo_-_Yanaka_143.jpg/330px-Tokyo_-_Yanaka_143.jpg" alt="Yanaka old town street">
-        <div class="timeblock-title">Yanaka Ginza &amp; Hagiso breakfast <span class="pill">From Wanderlog</span></div>
-        <div class="timeblock-body">
-          One of the few Tokyo neighborhoods that survived WWII bombings — narrow lanes, wooden houses, tiny shops, friendly cats. Walk <strong>Yanaka Ginza</strong> shopping street (good in the morning when shops are opening). Then breakfast at <strong>Hagiso</strong> — a beautifully restored 1955 wooden townhouse turned café-gallery-hotel that Grant loved, serving an elegant morning set with dashi-stock soup, seasonal rice, and ten small dishes. Allow 90 min.
+      <h3 class="picks-header">Activities · pick what fits the final day</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">Yanaka old town walk</div>
+          <div class="pick-meta">North Tokyo · 90 min · best in morning</div>
+          <p class="pick-body">One of the few Tokyo neighborhoods that survived WWII bombings — narrow lanes, wooden houses, tiny shops, friendly cats. Walk <strong>Yanaka Ginza</strong> shopping street as shops are opening.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://wabunka-lux.jp/experiences/en_torian-2/" target="_blank" rel="noopener">Private tea ceremony at To-Ri-An</a></div>
+          <div class="pick-meta">Reservation required · 90 min · most resonant cultural experience</div>
+          <p class="pick-body">Genuine private ceremony in the Urasenke tradition (most prestigious school) with English-speaking professors. Deeply meditative. Book through Wabunka.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Ginza stroll &amp; shopping</div>
+          <div class="pick-meta">Central Tokyo · all walkable on Chuo-dori (car-free weekends)</div>
+          <p class="pick-body">All on the same street: <strong>Itoya</strong> (12-floor stationery), <strong>Ginza Six</strong> (luxury mall + rooftop), <strong>Mitsukoshi Ginza</strong> depachika basement food hall, <strong>Uniqlo Ginza Global Flagship</strong>.</p>
+        </div>
+        <div class="pick must">
+          <div class="pick-name"><a href="https://www.tokyotower.co.jp/en/" target="_blank" rel="noopener">Tokyo Tower</a> &amp; Zojoji Temple at sunset</div>
+          <div class="pick-meta">Roppongi · 15-min taxi from JW · golden hour</div>
+          <p class="pick-body">Original Tokyo Tower (1958), more characterful than Skytree — especially framed with Zojoji Temple (1393) in front. Sunset is the move — golden hour, then the tower lights up red.</p>
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Late Morning</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Matcha_Scoop.jpg/330px-Matcha_Scoop.jpg" alt="Matcha tea">
-        <div class="timeblock-title">Private tea ceremony at To-Ri-An <span class="pill crimson">Reservation</span></div>
-        <div class="timeblock-body">
-          A genuine private ceremony in the Urasenke tradition (the most prestigious school) with English-speaking professors — Souei Funakoshi or Souai Kawada hosts. About 90 minutes, deeply meditative. Book through Wabunka or directly with the tea house. Often the most resonant cultural experience of the trip.
+      <h3 class="picks-header">Food &amp; drinks · the farewell day</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name"><a href="https://hagiso.com/en/" target="_blank" rel="noopener">Hagiso</a> breakfast</div>
+          <div class="pick-meta">Yanaka · 1955 wooden townhouse café · pairs with Yanaka walk</div>
+          <p class="pick-body">Restored 1955 wooden townhouse turned café-gallery-hotel. Elegant morning set with dashi-stock soup, seasonal rice, ten small dishes. Walks naturally with Yanaka Ginza.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Lunch</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Oyakodon_003.jpg/330px-Oyakodon_003.jpg" alt="Oyakodon">
-        <div class="timeblock-title">Tonkatsu Maisen or Tamahide oyakodon <span class="pill">Both fish-free</span></div>
-        <div class="timeblock-body">
-          <strong>Maisen Aoyama</strong>'s panko-crusted pork is iconic — kuro-buta black pork, melts under your fork. Or <strong>Tamahide</strong> in Nihonbashi for the original <em>oyakodon</em> (chicken &amp; egg over rice) — they invented the dish in 1891 and have been perfecting it ever since. Both reliable and zero raw fish.
+        <div class="pick">
+          <div class="pick-name"><a href="https://mai-sen.com/english/" target="_blank" rel="noopener">Tonkatsu Maisen Aoyama</a></div>
+          <div class="pick-meta">Tonkatsu · Aoyama · lunch · walk-in · no fish</div>
+          <p class="pick-body">Iconic kuro-buta black pork tonkatsu — melts under your fork. Easy lunch near Omotesando.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ginza-WAKO_at_night.jpg/330px-Ginza-WAKO_at_night.jpg" alt="Ginza at night">
-        <div class="timeblock-title">Ginza stroll &amp; shopping</div>
-        <div class="timeblock-body">
-          Walk Ginza's main artery (Chuo-dori is car-free on weekends and holidays). Stops worth making:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Itoya</strong> · 12-floor stationery wonderland</li>
-            <li><strong>Ginza Six</strong> · contemporary luxury mall with a rooftop garden</li>
-            <li><strong>Mitsukoshi Ginza</strong> · the basement food hall ("depachika") is mind-bending — sample anything from grilled wagyu skewers to perfect Japanese strawberries</li>
-            <li><strong>Uniqlo Ginza Global Flagship</strong> · 12 floors</li>
-          </ul>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=Tamahide+Nihonbashi+oyakodon" target="_blank" rel="noopener">Tamahide</a></div>
+          <div class="pick-meta">Oyakodon · Nihonbashi · since 1891 · lunch · zero fish</div>
+          <p class="pick-body">The Nihonbashi spot that invented oyakodon (chicken &amp; egg over rice) in 1891. The most fish-free meal possible.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Late Afternoon</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tokyo_Tower_2023.jpg/330px-Tokyo_Tower_2023.jpg" alt="Tokyo Tower">
-        <div class="timeblock-title"><a href="https://www.tokyotower.co.jp/en/" target="_blank" rel="noopener">Tokyo Tower</a> &amp; Zojoji Temple at sunset <span class="pill gold">Last view</span></div>
-        <div class="timeblock-body">
-          The original Tokyo Tower (1958) — 15 min by taxi from the JW Marriott. The view is more characterful than Skytree, especially with <strong>Zojoji Temple</strong> (a major Buddhist temple from 1393) framed in front. Sunset is the move — golden hour over the city, then the tower lights up red.
+        <div class="pick must">
+          <div class="pick-name"><a href="https://tabelog.com/tokyo/A1303/A130302/13193843/" target="_blank" rel="noopener">Shodai (Ebisu)</a></div>
+          <div class="pick-meta">Farewell dinner · Wanderlog must-have · reservation</div>
+          <p class="pick-body">Modern kappo, ~14 counter seats. Signature <strong>wagyu beef udon with potato foam</strong> — handmade udon under a cloud of light potato foam. Reservation required well ahead.</p>
         </div>
-      </div>
-
-      <div class="timeblock">
-        <div class="timeblock-time">Evening</div>
-        <img class="timeblock-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Yakiniku_002.jpg/330px-Yakiniku_002.jpg" alt="Yakiniku grilled wagyu">
-        <div class="timeblock-title">Farewell dinner — Shodai (Ebisu) <span class="pill gold">Wanderlog must-have</span></div>
-        <div class="timeblock-body">
-          <strong>Top pick: <a href="https://tabelog.com/tokyo/A1303/A130302/13193843/" target="_blank" rel="noopener">Shodai 焼塩</a></strong> in Ebisu — modern kappo-style restaurant Grant rates as a top Tokyo experience. Their <strong>signature beef udon with potato foam</strong> is the dish — wagyu + handmade udon under a cloud of light potato foam. Modern, refined, distinctly Japanese. Counter seating, ~14 seats. <strong>Reservation required well ahead.</strong>
-          <br><br>
-          If Shodai is full, three reliable backups:
-          <ul class="clean" style="margin-top:8px;">
-            <li><strong>Yakiniku Jambo Hannare</strong> (Shirokanedai) — premium Japanese BBQ; you grill A5 wagyu yourself at the table. Concierge reserve 1 month ahead.</li>
-            <li><strong>Ningyocho Imahan</strong> — legendary 130-year-old sukiyaki, beef &amp; vegetables in a sweet-soy broth, dipped in raw egg.</li>
-            <li><strong>Shabuzen Roppongi</strong> — pristine wagyu shabu-shabu, you swish thinly sliced beef in a hot kombu broth.</li>
-          </ul>
-          After dinner: a quiet whisky at <strong>Bar High Five</strong> in Ginza, the city's most respected cocktail bar.
+        <div class="pick">
+          <div class="pick-name"><a href="https://tabelog.com/tokyo/A1316/A131602/13165116/" target="_blank" rel="noopener">Yakiniku Jambo Hannare</a></div>
+          <div class="pick-meta">Backup farewell · Shirokanedai · A5 wagyu BBQ · concierge book</div>
+          <p class="pick-body">Premium Japanese BBQ; you grill A5 wagyu yourself at the table. Concierge reserve 1 month ahead.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://www.imahan.com/en/" target="_blank" rel="noopener">Ningyocho Imahan</a></div>
+          <div class="pick-meta">Backup farewell · sukiyaki · since 1895</div>
+          <p class="pick-body">Legendary 130-year-old sukiyaki — beef &amp; vegetables in sweet-soy broth, dipped in raw egg. Reservation needed.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name"><a href="https://barhighfive.com/" target="_blank" rel="noopener">Bar High Five nightcap</a></div>
+          <div class="pick-meta">Cocktails · Ginza · post-dinner</div>
+          <p class="pick-body">Tokyo's most respected cocktail bar. A quiet whisky to close out the trip.</p>
         </div>
       </div>
     </div>
@@ -1719,19 +1673,29 @@
         </div>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Morning</div>
-        <div class="timeblock-title">Final breakfast &amp; last walk</div>
-        <div class="timeblock-body">
-          Time-permitting — quick pre-flight stop at <strong>Sengakuji Temple</strong> (10-min walk from JW Marriott, the burial site of the 47 Ronin), or wander the new <strong>Takanawa Gateway</strong> development. Otherwise, a slow breakfast at the JW (Le Cres for artisanal Japanese-flavor croissants) and pack.
-        </div>
+      <div class="callout">
+        <div class="callout-title">Departure logistics</div>
+        <p style="margin:0; font-size:.92rem;">
+          The JW Marriott sits directly above <strong>Takanawa Gateway Station</strong>, just <strong>20 min to Haneda by taxi</strong> (~¥3,500) — the most convenient airport hotel of the whole trip. Allow <strong>3 hours for Haneda, 4 for Narita</strong> before international departure. Slow morning at the hotel, last walk if time permits.
+        </p>
       </div>
 
-      <div class="timeblock">
-        <div class="timeblock-time">Departure</div>
-        <div class="timeblock-title">Airport transfer</div>
-        <div class="timeblock-body">
-          The JW Marriott sits directly above <strong>Takanawa Gateway Station</strong>, just 20 minutes to Haneda by taxi (~¥3,500) — the most convenient departure of any Tokyo hotel. <strong>Allow 3 hours for Haneda, 4 for Narita</strong> before international departure.
+      <h3 class="picks-header">Last-morning picks · only if time</h3>
+      <div class="picks-grid">
+        <div class="pick">
+          <div class="pick-name">Le Cres at JW Marriott</div>
+          <div class="pick-meta">Breakfast · in-hotel · easy</div>
+          <p class="pick-body">Artisanal Japanese-flavor croissants. The most relaxed pre-flight breakfast option — no transit needed.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Sengakuji Temple</div>
+          <div class="pick-meta">10-min walk from JW · burial site of the 47 Ronin · 30 min</div>
+          <p class="pick-body">Quick walk for one last temple — historically resonant burial site. Easy if breakfast finishes early.</p>
+        </div>
+        <div class="pick">
+          <div class="pick-name">Takanawa Gateway City stroll</div>
+          <div class="pick-meta">At hotel base · gardens + modern architecture · 30 min</div>
+          <p class="pick-body">The new development under the JW Marriott. A pleasant zero-effort last walk.</p>
         </div>
       </div>
     </div>
